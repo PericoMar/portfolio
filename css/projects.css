@@ -1,0 +1,178 @@
+.proyectos {
+    background: linear-gradient(to right, white 0%, #EDEDED 30%, #EDEDED 70%, white 100%);
+}
+
+
+.proyectos-container {
+    padding: 40px 0px 60px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+
+
+.proyect-container {
+    padding: 30px;
+    border-radius: 1.25rem;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.proyect-row {
+    display: flex;
+    width: 100%;
+    gap: 20px; /* Espaciado entre columnas */
+}
+
+.proyect-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.vertical-project {
+    flex: 0.4; /* Hacer más estrecha la columna de proyectos verticales */
+}
+
+.wide-projects {
+    flex: 0.6; /* Hacer más ancha la columna derecha */
+    gap: 20px; /* Espaciado entre proyectos */
+}
+
+
+.proyecto-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.proyecto-card.vertical{
+    height: 740px;
+}
+
+.video-wrapper {
+    position: relative;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.big-card{
+    height: 100%;
+}
+
+.project-card-text{
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.project-video-info {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    align-items: center;
+    color: var(--primary-color);
+    position: relative; /* Necesario para el movimiento */
+}
+
+.project-video-info.up-and-down {
+    animation: subtleMoveUpDown 2s ease-in-out infinite alternate; /* Animación de 2 segundos que se repite infinitamente */
+}
+
+@keyframes subtleMoveUpDown {
+    0%, 100% {
+        transform: translateY(0); /* Punto inicial y final en la misma posición */
+    }
+    50% {
+        transform: translateY(-10px); /* Mueve 10px hacia abajo */
+    }
+}
+
+@keyframes subtleMove {
+    0%, 100% {
+        transform: translateX(0); /* Punto inicial y final en la misma posición */
+    }
+    50% {
+        transform: translateX(10px); /* Mueve 10px a la derecha */
+    }
+}
+
+.project-video-info {
+    animation: subtleMove 2s ease-in-out infinite; /* Animación de 2 segundos que se repite infinitamente */
+}
+
+
+.a-redirect-button{
+    width: 30%;
+    font-weight: bold;
+}
+
+.card-footer {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tecnologies{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tecnologies .span-tec {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.img-tec {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.img-git {
+    width: 30px;
+    height: 30px;
+}
+
+
+.no-padding{
+    padding: 0px;
+}
+
+.no-margin{
+    margin: 0px;
+}
+
+.canama{
+    height: 370px;
+}
+
+.etq-elc{
+    height: 370px;
+}
+
+.gap-20{
+    gap: 20px;
+}

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Martínez</title>
+    
+    <!-- Enlazar los estilos de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Enlazar jQuery (sin el atributo integrity) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <!-- Enlazar Bootstrap JavaScript (colocado después de jQuery) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Enlazar tus estilos personalizados -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="shortcut icon" href="images/favicon-removebg-preview.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" id="navbar">
+        <a class="navbar-brand" href="#"><img class=logo src="images/a-fb-chico.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#inicio">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#experiencia">Experiencia</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#proyectos">Proyectos</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#tecnologias">Tecnologías</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="title container-fluid d-flex justify-content-center align-items-center">
+            <div class="text-center">
+                <h1 class="display-3" id="inicio">Web Developer</h1>
+                <h2 class="display-5">Pedro Martínez González <span>Sevilla, Spain</span></h2>
+            </div>
+        </header>
+        <section class="container-fluid d-flex justify-content-center align-items-center">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-2">
+                    <img src="images/foto3.png" alt="Mi foto"
+                        class="img-fluid rounded-circle profile-pic animate__animated animate__fadeInLeft">
+                </div>
+                <div class="col-6">
+                    <div class="about-me animate__animated animate__fadeInRight">
+                        <h3>Sobre mí</h3>
+                        <p>Con más de un <b>año de experiencia</b> en desarrollo web, he tenido la oportunidad de <b>liderar un equipo de desarrolladores</b>, gestionar proyectos directamente con el <b>cliente final</b> a través de reuniones periódicas, y organizar una sesión clave para definir la <b>estrategia de control de versiones</b> en la empresa.</p>
+                        <p>Además de mi experiencia laboral, he desarrollado de <b>forma independiente</b> varios proyectos orientados a ofrecer <b>soluciones a problemas reales</b>, los cuales están siendo utilizados actualmente.</p>
+                        <p>Además de la tecnología, soy un entusiasta de los <b>deportes de fuerza</b>, siempre buscando el equilibrio entre el trabajo y el bienestar personal.</p>
+                        <div class="d-flex justify-content-start btns-personal-info">
+                            <a href="http://www.i11perico.es.mialias.net/marca/"
+                                class="btn btn-personal-info btn-wordpress d-flex justify-content-around align-items-center" target="blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person-fill" viewBox="0 0 16 16">
+                                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0m2 5.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12s5 1.755 5 1.755"/>
+                                </svg><b>Curriculum</b>
+                            </a>
+                            <a href="https://www.linkedin.com/in/pedromargonz/"
+                                class="btn btn-personal-info d-flex justify-content-around align-items-center" target="blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" >
+                                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                                  </svg>
+                            </a>
+                            <a href="https://github.com/PericoMar"
+                                class="btn btn-personal-info d-flex justify-content-around align-items-center btn-github" target="blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                                  </svg>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="experiencia container-fluid py-5 animate__animated animate__fadeInUp">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h3 class="text-center big-title" id="experiencia">Experiencia</h3>
+                    <div id="accordionExperiencia">
+
+                        <!-- Primer elemento del acordeón -->
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link btn-exp" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Desarrollador Full Stack - Kong Software, Sevilla. 2024
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordionExperiencia">
+                                <div class="card-body">
+                                    <p>
+                                        Durante eventos importantes en el Colegio Al-Andalus 2000 en Tomares, desempeñé
+                                        labores de <b>atención al público</b>, incluyendo servicio como camarero y
+                                        preparación de platos. Me enfoqué en ofrecer una experiencia excepcional,
+                                        demostrando <b>habilidades de comunicación efectivas</b> y atención meticulosa a
+                                        los detalles para garantizar la <b>satisfacción del cliente</b> en cada ocasión.
+                                        Esta experiencia me permitió desarrollar una sólida <b>ética de trabajo</b> y
+                                        <b>habilidades interpersonales</b>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Segundo elemento del acordeón -->
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed btn-exp" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        Profesor de programación.
+                                        2023-2024
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordionExperiencia">
+                                <div class="card-body">
+                                    <p>
+                                        Durante el año académico 2023 a 2024, me dediqué a dar <b>tutorías personalizadas en programación</b>
+                                        a varios compañeros, ayudándoles a entender mejor los conceptos y a <b>mejorar sus habilidades en el desarrollo de
+                                        aplicaciones web</b>. Con sesiones regulares, les guié para que dominaran los fundamentos y les di apoyo para
+                                        resolver problemas. Ver cómo lograban aprobar el grado de desarrollo de aplicaciones web gracias a nuestro
+                                        trabajo conjunto fue muy gratificante, lo que demuestra mi <b>capacidad para enseñar</b> y mi compromiso con
+                                        el éxito de los demás.
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tercer elemento del acordeón -->
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed btn-exp" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Entrenador de gimnasio. 2022-2023
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordionExperiencia">
+                                <div class="card-body">
+                                    <p>
+                                        Durante mi período como entrenador de gimnasio entre 2022 y 2023, proporcioné
+                                        orientación personalizada a mis compañeros en sus rutinas de ejercicio,
+                                        corrigiendo técnicas y ofreciendo asesoramiento nutricional. Mi enfoque se
+                                        centró en <b>maximizar su progreso y bienestar físico</b>, adaptando las rutinas
+                                        según sus objetivos individuales. Esta experiencia me permitió desarrollar
+                                        <b>habilidades de liderazgo y empatía</b>, así como una comprensión más profunda
+                                        de la importancia de la salud y el fitness en la vida diaria.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Productos -->
+
+        <h3 class="big-title" id="proyectos">Proyectos</h3>
+        <div id="projects" class="carousel slide" data-ride="carousel" data-pause="hover" data-bs-interval="false">
+            <ol class="carousel-indicators">
+              <li data-target="#projects" data-slide-to="0" class="active"></li>
+              <li data-target="#projects" data-slide-to="1"></li>
+              <li data-target="#projects" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <section class="proyectos">
+                    <div class="proyectos-container">
+                        <article class="proyect-container">
+                            <div class="proyect-row">
+                                <!-- Proyecto 1 (Kiosco) - más alto y estrecho a la izquierda -->
+                                <div class="proyect-column vertical-project">
+                                    <article class="proyecto-card vertical">
+                                        <div class="video-wrapper vertical">
+                                            <video class="card-img-top" onclick="togglePlayPause(this)" muted loop>
+                                                <source src="videos/proyecto1.mp4" type="video/mp4">
+                                                Tu navegador no soporta videos.
+                                            </video>
+                                        </div>
+                                    </article>
+                                </div>
+                
+                                <!-- Proyectos 2 y 3 en una columna a la derecha -->
+                                <div class="proyect-column wide-projects">
+                                    <div class="wide-project big-card">
+                                        <!-- Proyecto 2 - Más ancho -->
+                                        <article class="proyecto-card">
+                                            <main class="card-body no-flex">
+                                                <h2 class="card-title">Kiosco</h2>
+                                                <p class="project-card-text">
+                                                    El desafío fue crear aplicación web que permite a los clientes realizar pedidos directamente desde una pantalla táctil,
+                                                     <b>conectada a un ERP</b> para la gestión centralizada.
+                                                     </p> 
+                                                     <p class="project-card-text">Además, integré la funcionalidad para conectarme a una <b>impresora de tickets</b> tanto por USB
+                                                     como por red y el <b>uso de un datáfono</b> para los pagos directos desde el propio kiosco.
+                                                    </p>
+                                                     <p class="project-card-text"> Del mismo modo tuve que diseñarlo de manera adaptable para diferentes tipos de restaurantes, permitiendo <b>personalización a través del ERP</b>.</p>
+                                                     <p class="project-video-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                                                      </svg>Pasa el <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+                                                        <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                                                      </svg> por encima para ver el video</p>
+                                            </main>
+                                        </article>
+                                    </div>
+                
+                                    <div class="wide-project">
+                                        <!-- Proyecto 3 - Más ancho -->
+                                        <article class="proyecto-card">
+                                            <main class="card-body">
+                                                <h4 class="card-title">Seguridad y Adaptabilidad</h4>
+                                                <p class="project-card-text">Adapte el kiosco con <b>protecciones contra acciones maliciosas</b>, asegurando su fiabilidad en un entorno público.
+                                                    El proyecto está desplegado con <b>CI/CD en Azure</b> y ofrece acceso en línea para una demostración.</p>
+                                                    <div class="d-flex justify-content-between align-items-end">
+                                                    <p class="project-card-text">Genere scripts para la integración directa facilitando su <b>incorporación masiva</b>.</p>
+                                                    <a href="https://icy-mushroom-0fa619010.5.azurestaticapps.net/" target="_blank" rel="noopener noreferrer" class="a-redirect-button btn btn-personal-info d-flex justify-content-around align-items-center">
+                                                        Acceder 
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
+                                                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855q-.215.403-.395.872c.705.157 1.472.257 2.282.287zM4.249 3.539q.214-.577.481-1.078a7 7 0 0 1 .597-.933A7 7 0 0 0 3.051 3.05q.544.277 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9 9 0 0 1-1.565-.667A6.96 6.96 0 0 0 1.018 7.5zm1.4-2.741a12.3 12.3 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332M8.5 5.09V7.5h2.99a12.3 12.3 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.6 13.6 0 0 1 7.5 10.91V8.5zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741zm-3.282 3.696q.18.469.395.872c.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a7 7 0 0 1-.598-.933 9 9 0 0 1-.481-1.079 8.4 8.4 0 0 0-1.198.49 7 7 0 0 0 2.276 1.522zm-1.383-2.964A13.4 13.4 0 0 1 3.508 8.5h-2.49a6.96 6.96 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667m6.728 2.964a7 7 0 0 0 2.275-1.521 8.4 8.4 0 0 0-1.197-.49 9 9 0 0 1-.481 1.078 7 7 0 0 1-.597.933M8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855q.216-.403.395-.872A12.6 12.6 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.96 6.96 0 0 0 14.982 8.5h-2.49a13.4 13.4 0 0 1-.437 3.008M14.982 7.5a6.96 6.96 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zM11.27 2.461q.266.502.482 1.078a8.4 8.4 0 0 0 1.196-.49 7 7 0 0 0-2.275-1.52c.218.283.418.597.597.932m-.488 1.343a8 8 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"/>
+                                                      </svg></a>
+                                                    </div>
+                                            </main>
+                                            <aside class="card-footer">
+                                                <div class="tecnologies">
+                                                    <span class="span-tec"><img class="img-tec" src="images/Angular_full_color_logo.svg.png" alt="">Angular</span>
+                                                    <span class="span-tec"><img class="img-tec" src="images/laravel-2.svg" alt="">Laravel</span>
+                                                    <span class="span-tec"><img class="img-tec" src="images/azure.png" alt="">Azure</span>
+                                                    <span class="span-tec"><img class="img-tec" src="images/sqlserver.png" alt="">SQL Server</span>
+                                                </div>
+                                                <a href="https://github.com/PericoMar/kiosco" target="_blank" rel="noopener noreferrer"><img class="img-git" src="images/Octicons-mark-github.svg" alt=""></a>
+                                            </aside>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+              </div>
+              <div class="carousel-item">
+                <section class="proyectos">
+                    <div class="proyectos-container">
+                        <article class="proyect-container">
+                            <div class="proyect-row">
+                
+                                <!-- Proyectos 2 y 3 en una columna a la derecha -->
+                                <div class="proyect-column gap-20">
+                                    <div class="wide-project big-card">
+                                        <!-- Proyecto 2 - Más ancho -->
+                                        <article class="proyecto-card">
+                                            <main class="card-body no-padding">
+                                                <video class="card-img-top canama" onclick="togglePlayPause(this)" muted loop>
+                                                    <source src="videos/proyecto2.mp4" type="video/mp4">
+                                                    Tu navegador no soporta videos.
+                                                </video>
+                                            </main>
+                                        </article>
+                                        
+                                    </div>
+                
+                                    <div class="wide-project">
+                                        <!-- Proyecto 3 - Más ancho -->
+                                        <article class="proyecto-card">
+                                            <main class="card-body">
+                                                <header class="d-flex justify-content-between align-items-center mb-4">
+                                                    <h2 class="card-title">Panel de gestión seguros</h2>
+                                                    <p class="project-card-text">
+                                                        <p class="project-video-info up-and-down no-margin">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                                              </svg>
+                                                            Pasa el <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+                                                                    <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                                                            </svg> por encima para ver el video
+                                                    </p>
+                                                </header>
+                                                <p class="project-card-text">Desarrollé una plataforma de <b>gestión de seguros</b> que permite crear seguros y productos con <b>formularios dinámicos</b>,
+                                                añadir <b>subproductos</b> y <b>anexos</b>, y generar <b>certificados personalizados</b> con la imagen de la aseguradora y la <b>sociedad del comercial</b>.
+                                                </p> <p class="project-card-text">La plataforma genera <b>informes de ventas</b> y permite la <b>gestión de comisiones</b> en niveles inferiores. 
+                                                Cuenta con un <b>formulario de pago</b> personalizado con <b>pasarela de pagos</b>, y un sistema de <b>gestión de usuarios</b> segmentado por comerciales y
+                                                sociedades.</p> <p class="project-card-text">Con integración a un <b>ERP</b> por sociedad, asegura una sincronización centralizada y está <b>desplegada con
+                                                CI/CD en Azure</b> para una actualización continua.</p>
+
+                                            </main>
+                                            <aside class="card-footer">
+                                                <div class="tecnologies">
+                                                    <span class="span-tec"><img class="img-tec" src="images/Angular_full_color_logo.svg.png" alt="">Angular</span>
+                                                    <span class="span-tec"><img class="img-tec" src="images/laravel-2.svg" alt="">Laravel</span>
+                                                    <span class="span-tec"><img class="img-tec" src="images/azure.png" alt="">Azure</span>
+                                                    <span class="span-tec"><img class="img-tec" src="images/sqlserver.png" alt="">SQL Server</span>
+                                                </div>
+                                                <a href="https://github.com/PericoMar/Kyrema" target="_blank" rel="noopener noreferrer"><img class="img-git" src="images/Octicons-mark-github.svg" alt=""></a>
+                                            </aside>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+              </div>
+              <div class="carousel-item">
+                <section class="proyectos">
+                    <div class="proyectos-container">
+                        <article class="proyect-container">
+                            <div class="proyect-row">
+                
+                                <!-- Proyectos 2 y 3 en una columna a la derecha -->
+                                <div class="proyect-column gap-20">
+                                    <div class="wide-project big-card">
+                                        <!-- Proyecto 2 - Más ancho -->
+                                        <article class="proyecto-card">
+                                            <main class="card-body no-padding">
+                                                <video class="card-img-top etq-elc" onclick="togglePlayPause(this)" muted loop>
+                                                    <source src="videos/proyecto3.mp4" type="video/mp4">
+                                                    Tu navegador no soporta videos.
+                                                </video>
+                                            </main>
+                                        </article>
+                                    </div>
+                
+                                    <div class="wide-project">
+                                        <!-- Proyecto 3 - Más ancho -->
+                                        <article class="proyecto-card">
+                                            <main class="card-body">
+                                                <header class="d-flex justify-content-between align-items-center mb-4">
+                                                    <h2 class="card-title">Control etiquetas electronicas</h2>
+                                                    <p class="project-card-text">
+                                                        <p class="project-video-info up-and-down no-margin">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                                              </svg>
+                                                            Pasa el <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+                                                                    <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                                                            </svg> por encima para ver el video
+                                                    </p>
+                                                </header>
+                                                <p class="project-card-text">Desarrollé una <b>web para el control de etiquetas electrónicas</b>, conectada a las etiquetas de tienda a través de una <b>API</b>, que permite cambiar su <b>diseño</b> y actualizar <b>datos mostrados</b>. También, facilita la <b>importación masiva de datos</b> desde archivos Excel.</p>
+
+                                                <p class="project-card-text">La plataforma incluye una <b>gestión de usuarios</b> con roles y permisos, permitiendo a los <b>administradores</b> gestionar sus propias tiendas, y ofreciendo una solución tanto para <b>dueños y empleados</b> de tiendas como para <b>distribuidores</b>.</p>
+
+                                            </main>
+                                            <aside class="card-footer">
+                                                <div class="tecnologies">
+                                                    <span class="span-tec"><img class="img-tec" src="images/php.svg" alt="">PHP</span>
+                                                    <span class="span-tec"><img class="img-tec" src="images/javascript.png" alt="">JavaScript</span>
+                                                    <span class="span-tec"><img class="img-tec" src="images/mysql.svg" alt="">MySQL</span>
+                                                </div>
+                                                <a href="https://github.com/PericoMar/etq-elc" target="_blank" rel="noopener noreferrer"><img class="img-git" src="images/Octicons-mark-github.svg" alt=""></a>
+                                            </aside>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#projects" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#projects" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        
+        
+        
+        
+        
+        
+
+
+
+        <section class="proyectos-academicos">
+            <div class="container">
+                <h3 class="text-center" id="proyectos-academicos">Proyectos Académicos</h3>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-5">
+                        <div class="card project">
+                            <img src="images/flags-of-the-world-1170x693.png" class="card-img-top" alt="Proyecto 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Países con Angular 17</h5>
+                                <p class="card-text">Este proyecto es una aplicación web desarrollada en Angular que
+                                    permite a los usuarios buscar países utilizando una API externa. La aplicación
+                                    recibe inputs del usuario, como el nombre del país, y muestra los resultados
+                                    correspondientes obtenidos de la API.</p>
+                                <aside class="d-flex justify-content-between align-items-center">
+                                    <div class="tecnologies d-flex justify-content-around">
+                                        <span class="span-tec"><img class="img-tec"
+                                                src="images/Angular_full_color_logo.svg.png" alt="">Angular</span>
+                                        <span class="span-tec"><img class="img-tec" src="images/bootstrap-5-1.svg"
+                                                alt="">Bootstrap</span>
+                                    </div>
+                                    <a href="https://github.com/PericoMar"><img class="img-git"
+                                            src="images/Octicons-mark-github.svg" alt=""></a>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card project">
+                            <img src="images/Captura de pantalla 2024-02-22 214323.png" class="card-img-top"
+                                alt="Proyecto 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Karting 3D con Unity</h5>
+                                <p class="card-text">Desarrollé un juego de karting 3D en Unity, incluyendo control de
+                                    vueltas, zonas de aceleración y lanzamiento de objetos. Pueden jugar dos personas
+                                    con pantalla dividida y además se implementa Virtual Camera que le da vida a los
+                                    movimientos del kart.</p>
+
+                                <aside class="d-flex justify-content-between align-items-center">
+                                    <div class="tecnologies">
+                                        <span class="span-tec"><img class="img-tec"
+                                                src="images/unity-logo-988A22E703-seeklogo.com.png" alt="">Unity</span>
+                                    </div>
+                                    <a href="https://github.com/PericoMar"><img class="img-git"
+                                            src="images/Octicons-mark-github.svg" alt=""></a>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <video class="card-img-top alone" onclick="togglePlayPause(this)" muted loop autoplay>
+                                <source src="videos/proyecto4.mp4" type="video/mp4">
+                                Tu navegador no soporta videos.
+                            </video>
+                            <div class="card-body">
+                                <h5 class="card-title">Control de reservas cine</h5>
+                                <p class="card-text">Desarrollé un sistema de <b>control de reservas para un cine</b> utilizando el patrón de diseño <b>Modelo-Vista-Controlador (MVC)</b> en <b>Angular</b>. Los usuarios pueden consultar <b>sesiones disponibles</b>, ver sus <b>reservas activas</b> y cancelar reservas.</p>
+
+                                <p class="card-text">Los empleados tienen acceso a un panel de administración para gestionar todas las <b>reservas</b>, filtrarlas y cancelarlas según sea necesario. Conectado a una base de datos <b>MySQL</b>, el sistema asegura la integridad de los datos y una gestión eficiente de las reservas.</p>
+
+                                <aside class="d-flex justify-content-between align-items-center">
+                                    <div class="tecnologies d-flex justify-content-around">
+                                        <span class="span-tec"><img class="img-tec" src="images/Angular_full_color_logo.svg.png"
+                                                alt="">Angular</span>
+                                        <span class="span-tec"><img class="img-tec"
+                                                src="images/mysql.svg" alt="">MySQL</span>
+                                    </div>
+                                    <a href="https://github.com/PericoMar"><img class="img-git"
+                                            src="images/Octicons-mark-github.svg" alt=""></a>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Contacto</h4>
+                    <p>Correo electrónico: pedromartinez.22@campuscamara.es</p>
+                    <p>Teléfono: +34 628 19 87 45</p>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center">© 2024 Pedro Martínez González</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/b56ce9d686.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

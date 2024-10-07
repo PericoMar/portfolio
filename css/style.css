@@ -1,0 +1,292 @@
+:root{
+    --primary-color: #585FFF;
+    --secondary-color: #EDEDED;
+    --tertiary-color: #FFFF;
+    --quaternary-color: #252525;
+}
+
+.navbar {
+    background-color: #FFFF;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:2;
+    transition: top 0.3s;
+}
+
+.navbar-hidden{
+    top: -100px;
+}
+
+.navbar-brand {
+    margin-left: 10%;
+}
+
+.navbar-nav{
+    gap: 10px;
+}
+
+ul.navbar-nav li.nav-item .nav-link:hover{
+    color: var(--primary-color);
+}
+
+.logo {
+    width: 150px;
+}
+
+#navbarNav {
+    margin-right: 10%;
+}
+
+.navbar-toggler {
+    margin-right: 10%;
+}
+
+header.title {
+    margin: 50px 0px;
+}
+
+h1.display-3 {
+    margin-top: 70px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+h2 span{
+    font-size: 1rem;
+    color: rgb(182, 180, 180);
+}
+
+h3 {
+    color: var(--primary-color);
+    font-size: xx-large;
+}
+
+.big-title{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3em;
+}
+
+.profile-pic {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btns-personal-info{
+    gap:10px;
+}
+
+.btn-personal-info {
+    border-radius: 20px;
+    /* Redondea los bordes */
+    padding: 10px 20px;
+    /* Ajusta el relleno */
+    font-size: 16px;
+    /* Ajusta el tamaño de la fuente */
+    border: none;
+    /* Quita el borde */
+    color: #ffffff;
+    background-color: var(--primary-color);
+    box-shadow: inset 0 0 0 0 #0E16D4;
+    transition: ease-out 0.6s;
+    height: 44px;
+    width: 66px;
+}
+
+.btn-personal-info:hover {
+    box-shadow: inset 160px 0 0 0 #0E16D4;
+    color: #ffffff;
+}
+
+
+/* Estilo para los otros proyectos más anchos */
+.proyecto-card {
+    min-height: 300px;
+    width: 100%;
+}
+.card-body {
+    font-size: 1.1rem;
+}
+
+h4.card-title {
+    font-size: 1.5rem;
+}
+
+.btn-personal-info svg{
+    width: 16px;
+    height: 16px;
+}
+
+.btn-github svg{
+    width: 20px;
+    height: 20px;
+}
+
+.btn-wordpress {
+    width: 160px;
+}
+
+#faq{
+    margin-top: 80px;
+}
+
+.btn-service{
+    background-color: var(--primary-color);
+    color:#FFFF;
+}
+
+.btn-service:hover{
+    color:#FFFF;
+}
+
+.experiencia {
+    margin: 80px 0px;
+}
+
+
+.collapsed {
+    color: #252525;
+    text-decoration: none;
+}
+
+.btn-link[aria-expanded="true"] {
+    color: var(--primary-color);
+}
+
+.collapsed:hover {
+    color: var(--primary-color);
+}
+
+.btn-exp {
+    width: 100%;
+}
+
+/* Cambia el color de las flechas de navegación a negro */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    /* Alternativa para controlar el color usando filtros */
+    filter: invert(100%);
+    width: 50px; /* Ajusta el tamaño según tus necesidades */
+    height: 50px;
+    background-size: 100%;
+    transition: transform 0.2s ease; /* Añade una transición suave */
+}
+
+/* Hover para la flecha izquierda */
+.carousel-control-prev-icon:hover {
+    transform: translateX(-5px); /* Desplaza ligeramente hacia la izquierda */
+}
+
+/* Hover para la flecha derecha */
+.carousel-control-next-icon:hover {
+    transform: translateX(5px); /* Desplaza ligeramente hacia la derecha */
+}
+
+
+/* Opcional: cambiar el color de los indicadores activos */
+.carousel-indicators .active {
+  background-color: grey; /* Para diferenciar el activo, puedes usar otro tono */
+}
+
+
+#proyectos-academicos{
+    margin-top: 80px;
+}
+
+.proyecto-card {
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+.proyecto-card:hover video {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.proyecto-card video {
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+}
+
+
+.card {
+    margin: 30px 0px;
+    
+}
+
+.project{
+    height: 600px;
+}
+
+.card-img-top{
+    height: 290px;
+}
+
+.card-img-top.alone{
+    height: 362px;
+}
+
+
+.card-body{
+    padding:auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.no-flex{
+    display: block;
+}
+
+
+
+.span-tec {
+
+    display: inline-block;
+    background-color: #f0f0f0;
+    /* Color de fondo */
+    color: #333;
+    /* Color del texto */
+    padding: 5px 10px;
+    /* Espaciado interno */
+    margin: 2px;
+    /* Margen exterior */
+    border-radius: 20px;
+    /* Borde redondeado */
+    font-size: 14px;
+    /* Tamaño del texto */
+
+}
+
+.img-tec{
+    width:30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.img-git{
+    width:30px;
+    height: 30px;
+    transition: width 0.3s, height 0.3s;
+}
+
+.img-git:hover{
+    width:34px;
+    height: 34px;
+}
+
+footer.footer {
+    background-color: #EDEDED;
+    padding: 20px 0px 10px;
+    margin-top: 100px;
+}
