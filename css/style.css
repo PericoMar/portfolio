@@ -52,7 +52,14 @@ h1.display-3 {
     font-weight: bold;
 }
 
-h2 span{
+.personal-info{
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.location{
+    font-weight: 500;
     font-size: 1rem;
     color: rgb(182, 180, 180);
 }
@@ -70,9 +77,11 @@ h3 {
 
 .profile-pic {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 350px;
 }
 
 .btns-personal-info{
+    justify-content: flex-start;
     gap:10px;
 }
 
@@ -103,9 +112,6 @@ h3 {
 .proyecto-card {
     min-height: 300px;
     width: 100%;
-}
-.card-body {
-    font-size: 1.1rem;
 }
 
 h4.card-title {
@@ -290,3 +296,64 @@ footer.footer {
     padding: 20px 0px 10px;
     margin-top: 100px;
 }
+
+
+/* Estilo general */
+.about-me {
+    padding: 0; /* Sin padding general */
+}
+
+/* Cambios para pantallas menores a 1200px */
+@media (max-width: 1300px) {
+    .col-2 {
+        flex: 0 0 40%; /* Aumentar espacio para la imagen */
+        max-width: 40%; /* Aumentar el ancho máximo */
+        margin-bottom: 20px; /* Espacio en la parte inferior */
+        display: flex; /* Asegura que se mantenga centrada */
+        justify-content: center; /* Centra la imagen */
+    }
+}
+
+/* Cambios para pantallas menores a 1000px */
+@media (max-width: 1000px) {
+    .personal-info{
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .row {
+        flex-direction: column; /* Colocar la imagen encima del texto */
+        align-items: center; /* Centrar el contenido */
+    }
+    .about-me {
+        text-align: center; /* Centrar el texto */
+        margin: 0 20px; /* Margen horizontal para mayor espacio */
+    }
+    .col-2 {
+        flex: 0 0 100%; /* La imagen ocupa todo el ancho */
+        max-width: 100%; /* La imagen ocupa todo el ancho */
+        display: flex; /* Asegura que se mantenga centrada */
+        justify-content: center; /* Centra la imagen */
+    }
+
+    .col-6{
+        max-width: 100%;
+        padding: 10%;
+    }
+
+    .about-me .btns-personal-info{
+        justify-content: center;
+    }
+
+    .col-md-6{
+        max-width: 80%;
+    }
+}
+
+/* Estilo para centrar la imagen */
+.profile-pic {
+    max-width: 100%; /* Asegúrate de que la imagen sea responsiva */
+    height: auto; /* Mantener la proporción de la imagen */
+}
+

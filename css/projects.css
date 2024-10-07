@@ -54,6 +54,11 @@
     height: 100%;
 }
 
+.proyecto-card.video{
+    width: 60%;
+    min-width: 684px;
+}
+
 .proyecto-card.vertical{
     height: 740px;
 }
@@ -79,12 +84,18 @@
     height: 100%;
 }
 
+.project-header{
+    justify-content: space-between;
+    align-items: center;
+}
+
 .project-card-text{
     font-size: 0.95rem;
     margin-bottom: 5px;
 }
 
 .project-video-info {
+    min-width: 330px;
     margin-top: 40px;
     display: flex;
     justify-content: flex-start;
@@ -92,10 +103,16 @@
     align-items: center;
     color: var(--primary-color);
     position: relative; /* Necesario para el movimiento */
+    font-size: 1.1rem;
 }
 
 .project-video-info.up-and-down {
     animation: subtleMoveUpDown 2s ease-in-out infinite alternate; /* Animación de 2 segundos que se repite infinitamente */
+}
+
+.project-footer{
+    justify-content: space-between;
+    align-items: end;
 }
 
 @keyframes subtleMoveUpDown {
@@ -167,12 +184,107 @@
 
 .canama{
     height: 370px;
+    min-width: 684px;
 }
 
 .etq-elc{
     height: 370px;
+    min-width: 684px;
+}
+
+.kiosco{
+    min-width: 406px;
 }
 
 .gap-20{
     gap: 20px;
+}
+
+.kiosco-up{
+    display: none;
+}
+
+
+
+@media (max-width: 750px) {
+    .proyect-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .project-header{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-video-info{
+        order : 0;
+    }
+    
+    .proyect-column {
+        width: 100%;
+        align-items: center;
+    }
+    
+    .video-wrapper video,
+    .proyecto-card.video {
+        width: 100%;
+        min-width: auto;
+        min-height: auto;
+    }
+
+    .kiosco-left{
+        display: none;
+    }
+
+    .kiosco-up{
+        display: block;
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .project-video-info,
+    .project-card-text {
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .project-footer{
+        flex-direction: column;
+        align-items: center;
+        gap:5px;
+    }
+
+    .project-footer a{
+        width: 60%;
+    }
+
+    .canama{
+        height: 370px;
+        min-width: 423px;
+    }
+    
+    .etq-elc{
+        height: 370px;
+        min-width: 423px;
+    }
+
+    .kiosco{
+        min-height: 850px;
+    }
+
+    .a-redirect-button {
+        width: 100%;
+    }
+
+
+    .carousel-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; /* Espacio entre proyectos */
+    }
 }

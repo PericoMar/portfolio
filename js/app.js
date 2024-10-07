@@ -14,18 +14,43 @@ window.addEventListener("scroll", function() {
   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 }, false);
 
-// document.querySelectorAll('.proyecto-card').forEach(card => {
-//   const video = card.querySelector('video');
+// Función para verificar el ancho de la pantalla y ajustar el carrusel
+function ajustarCarrusel() {
+  if (window.innerWidth <= 750) {
+    // Selecciona todos los elementos del carrusel
+    const items = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelector('.carousel-indicators');
+    const controls = document.querySelectorAll('.carousel-control-prev, .carousel-control-next');
 
-//   card.addEventListener('mouseenter', () => {
-//       video.play();  // Reproduce el video al hacer hover
-//   });
+    // Remueve las clases del carrusel de cada elemento
+    items.forEach(item => {
+      item.classList.remove('carousel-item');
+      item.style.display = 'block'; // Asegura que cada elemento se muestre en bloque
+    });
 
-//   card.addEventListener('mouseleave', () => {
-//       video.pause(); // Pausa el video cuando el mouse sale
-//       video.currentTime = 0;  // Opcional: reinicia el video al principio
-//   });
-// });
+    // Oculta los indicadores y los controles
+    if (indicators) indicators.style.display = 'none';
+    controls.forEach(control => control.style.display = 'none');
+  } else {
+    // Restaura el carrusel para pantallas más grandes
+    const items = document.querySelectorAll('.carousel > div');
+    const indicators = document.querySelector('.carousel-indicators');
+    const controls = document.querySelectorAll('.carousel-control-prev, .carousel-control-next');
+
+    items.forEach(item => {
+      item.classList.add('carousel-item');
+      item.style.display = ''; // Limpia el estilo en línea para restaurar el comportamiento
+    });
+
+    if (indicators) indicators.style.display = '';
+    controls.forEach(control => control.style.display = '');
+  }
+}
+
+// Ejecuta la función al cargar la página y cada vez que se redimensiona la ventana
+window.addEventListener('load', ajustarCarrusel);
+window.addEventListener('resize', ajustarCarrusel);
+
 
 function togglePlayPause(videoElement) {
   if (videoElement.paused) {
