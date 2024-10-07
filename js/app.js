@@ -15,41 +15,41 @@ window.addEventListener("scroll", function() {
 }, false);
 
 // Función para verificar el ancho de la pantalla y ajustar el carrusel
-function ajustarCarrusel() {
-  if (window.innerWidth <= 750) {
-    // Selecciona todos los elementos del carrusel
-    const items = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelector('.carousel-indicators');
-    const controls = document.querySelectorAll('.carousel-control-prev, .carousel-control-next');
+// function ajustarCarrusel() {
+//   console.log(window.innerWidth);
+//   if (window.innerWidth <= 750) {
+//     // Selecciona todos los elementos del carrusel
+//     const items = document.querySelectorAll('.carousel-item');
+//     const indicators = document.querySelector('.carousel-indicators');
+//     const controls = document.querySelectorAll('.carousel-control-prev, .carousel-control-next');
 
-    // Remueve las clases del carrusel de cada elemento
-    items.forEach(item => {
-      item.classList.remove('carousel-item');
-      item.style.display = 'block'; // Asegura que cada elemento se muestre en bloque
-    });
+//     // Remueve las clases del carrusel de cada elemento
+//     items.forEach(item => {
+//       item.classList.remove('carousel-item');
+//       item.style.display = 'block'; // Asegura que cada elemento se muestre en bloque
+//     });
 
-    // Oculta los indicadores y los controles
-    if (indicators) indicators.style.display = 'none';
-    controls.forEach(control => control.style.display = 'none');
-  } else {
-    // Restaura el carrusel para pantallas más grandes
-    const items = document.querySelectorAll('.carousel > div');
-    const indicators = document.querySelector('.carousel-indicators');
-    const controls = document.querySelectorAll('.carousel-control-prev, .carousel-control-next');
+//     // Oculta los indicadores y los controles
+//     if (indicators) indicators.style.display = 'none';
+//     controls.forEach(control => control.style.display = 'none');
+//   } else {
+//     // Restaura el carrusel para pantallas más grandes
+//     const items = document.querySelectorAll('.carousel > div');
+//     const indicators = document.querySelector('.carousel-indicators');
+//     const controls = document.querySelectorAll('.carousel-control-prev, .carousel-control-next');
 
-    items.forEach(item => {
-      item.classList.add('carousel-item');
-      item.style.display = ''; // Limpia el estilo en línea para restaurar el comportamiento
-    });
+//     items.forEach(item => {
+//       item.classList.add('carousel-item');
+//       item.style.display = ''; // Limpia el estilo en línea para restaurar el comportamiento
+//     });
 
-    if (indicators) indicators.style.display = '';
-    controls.forEach(control => control.style.display = '');
-  }
-}
+//     if (indicators) indicators.style.display = '';
+//     controls.forEach(control => control.style.display = '');
+//   }
+// }
 
-// Ejecuta la función al cargar la página y cada vez que se redimensiona la ventana
-window.addEventListener('load', ajustarCarrusel);
-window.addEventListener('resize', ajustarCarrusel);
+// // Ejecuta la función al cargar la página y cada vez que se redimensiona la ventana
+// window.addEventListener('resize', ajustarCarrusel);
 
 
 function togglePlayPause(videoElement) {

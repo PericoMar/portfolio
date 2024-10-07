@@ -204,6 +204,10 @@
     display: none;
 }
 
+.projects-mobile{
+    display: none;
+}
+
 
 
 @media (max-width: 750px) {
@@ -280,11 +284,11 @@
         width: 100%;
     }
 
+    .projects-big-screen{
+        display: none;
+    }
 
-    .carousel-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px; /* Espacio entre proyectos */
+    .projects-mobile{
+        display: block;
     }
 }
