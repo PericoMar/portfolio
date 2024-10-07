@@ -14,6 +14,10 @@
     
     <!-- Enlazar Bootstrap JavaScript (colocado después de jQuery) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
     
     <!-- Enlazar tus estilos personalizados -->
     <link rel="stylesheet" href="css/style.css">
@@ -427,7 +431,7 @@
                     <div class="proyect-column vertical-project">
                       <article class="proyecto-card vertical">
                         <div class="video-wrapper vertical">
-                          <video class="card-img-top kiosco mobile-video" onclick="togglePlayPause(this)" muted loop>
+                          <video class="card-img-top kiosco mobile-video" onclick="togglePlayPause(this)" muted loop autoplay>
                             <source src="videos/proyecto1.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
                           </video>
@@ -498,7 +502,7 @@
                                     <!-- Proyecto 2 - Más ancho -->
                                     <article class="proyecto-card video">
                                         <main class="card-body no-padding">
-                                            <video class="card-img-top canama mobile-video" onclick="togglePlayPause(this)" muted loop>
+                                            <video class="card-img-top canama mobile-video" onclick="togglePlayPause(this)" muted loop autoplay>
                                                 <source src="videos/proyecto2.mp4" type="video/mp4">
                                                 Tu navegador no soporta videos.
                                             </video>
@@ -567,7 +571,7 @@
                                     <!-- Proyecto 2 - Más ancho -->
                                     <article class="proyecto-card video">
                                         <main class="card-body no-padding">
-                                            <video class="card-img-top etq-elc mobile-video" onclick="togglePlayPause(this)" muted loop>
+                                            <video class="card-img-top etq-elc mobile-video" onclick="togglePlayPause(this)" muted loop autoplay>
                                                 <source src="videos/proyecto3.mp4" type="video/mp4">
                                                 Tu navegador no soporta videos.
                                             </video>
@@ -711,7 +715,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>Contacto</h4>
+                    <h4 id="contacto">Contacto</h4>
                     <p>Correo electrónico: pedromartinez.22@campuscamara.es</p>
                     <p>Teléfono: +34 628 19 87 45</p>
                 </div>
