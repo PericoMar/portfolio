@@ -427,7 +427,7 @@
                     <div class="proyect-column vertical-project">
                       <article class="proyecto-card vertical">
                         <div class="video-wrapper vertical">
-                          <video class="card-img-top kiosco" onclick="togglePlayPause(this)" muted loop>
+                          <video class="card-img-top kiosco mobile-video" onclick="togglePlayPause(this)" muted loop>
                             <source src="videos/proyecto1.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
                           </video>
@@ -440,12 +440,12 @@
                         <article class="proyecto-card">
                           <main class="card-body no-flex">
                             <h2 class="card-title">Kiosco</h2>
-                            <p class="project-video-info up-and-down no-margin kiosco-up">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
-                              </svg> Pasa el <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
-                                <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
-                              </svg> por encima para ver el video
+                            <p class="project-video-info up-and-down no-margin mobile-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                  </svg> Haz click <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+                                    <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                                  </svg> para pausar el video
                             </p>
                             <p class="project-card-text">
                               El desafío fue crear aplicación web que permite a los clientes realizar pedidos directamente desde una pantalla táctil, <b>conectada a un ERP</b> para la gestión centralizada.
@@ -453,9 +453,10 @@
                             <p class="project-card-text">Además, integré la funcionalidad para conectarme a una <b>impresora de tickets</b> tanto por USB como por red y el <b>uso de un datáfono</b> para los pagos directos desde el propio kiosco.
                             </p>
                             <p class="project-card-text"> Del mismo modo tuve que diseñarlo de manera adaptable para diferentes tipos de restaurantes, permitiendo <b>personalización a través del ERP</b>.</p>
-                            <p class="project-video-info kiosco-left">
+                            <p class="project-video-info big-screen-info">
+                              
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
                               </svg> Pasa el <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
                                 <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
                               </svg> por encima para ver el video
@@ -497,7 +498,7 @@
                                     <!-- Proyecto 2 - Más ancho -->
                                     <article class="proyecto-card video">
                                         <main class="card-body no-padding">
-                                            <video class="card-img-top canama" onclick="togglePlayPause(this)" muted loop>
+                                            <video class="card-img-top canama mobile-video" onclick="togglePlayPause(this)" muted loop>
                                                 <source src="videos/proyecto2.mp4" type="video/mp4">
                                                 Tu navegador no soporta videos.
                                             </video>
@@ -513,14 +514,22 @@
                                             <header class="d-flex project-header mb-4">
                                                 <h2 class="card-title">Panel de gestión seguros</h2>
                                                 <p class="project-card-text">
-                                                    <p class="project-video-info up-and-down no-margin">
+                                                    <p class="project-video-info up-and-down no-margin big-screen-info">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
                                                             <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
                                                           </svg>
                                                         Pasa el <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
                                                                 <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
                                                         </svg> por encima para ver el video
+                                                        
                                                     </p>
+                                                    <p class="project-video-info up-and-down no-margin mobile-info">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                                          <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                                        </svg> Haz click <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+                                                          <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                                                        </svg> para pausar el video
+                                                      </p>
                                                 </p>
                                             </header>
                                             <p class="project-card-text">Desarrollé una plataforma de <b>gestión de seguros</b> que permite crear seguros y productos con <b>formularios dinámicos</b>,
@@ -558,7 +567,7 @@
                                     <!-- Proyecto 2 - Más ancho -->
                                     <article class="proyecto-card video">
                                         <main class="card-body no-padding">
-                                            <video class="card-img-top etq-elc" onclick="togglePlayPause(this)" muted loop>
+                                            <video class="card-img-top etq-elc mobile-video" onclick="togglePlayPause(this)" muted loop>
                                                 <source src="videos/proyecto3.mp4" type="video/mp4">
                                                 Tu navegador no soporta videos.
                                             </video>
@@ -573,7 +582,7 @@
                                             <header class="d-flex mb-4 project-header">
                                                 <h2 class="card-title">Control etiquetas electronicas</h2>
                                                 <p class="project-card-text">
-                                                    <p class="project-video-info up-and-down no-margin">
+                                                    <p class="project-video-info up-and-down no-margin big-screen-info">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
                                                             <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
                                                           </svg>
@@ -581,6 +590,13 @@
                                                                 <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
                                                         </svg> por encima para ver el video
                                                 </p>
+                                                <p class="project-video-info up-and-down no-margin mobile-info">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                                      <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                                    </svg> Haz click <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+                                                      <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                                                    </svg> para pausar el video
+                                                  </p>
                                             </header>
                                             <p class="project-card-text">Desarrollé una <b>web para el control de etiquetas electrónicas</b>, conectada a las etiquetas de tienda a través de una <b>API</b>, que permite cambiar su <b>diseño</b> y actualizar <b>datos mostrados</b>. También, facilita la <b>importación masiva de datos</b> desde archivos Excel.</p>
 

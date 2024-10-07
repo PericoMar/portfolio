@@ -349,11 +349,21 @@ footer.footer {
     .col-md-6{
         max-width: 80%;
     }
+
+    .kiosco{
+        min-height: 850px;
+    }
 }
 
 /* Estilo para centrar la imagen */
 .profile-pic {
     max-width: 100%; /* Asegúrate de que la imagen sea responsiva */
     height: auto; /* Mantener la proporción de la imagen */
+}
+
+@media (max-width: 750px) {
+    .proyecto-card video{
+        opacity: 1;
+    }
 }
 
