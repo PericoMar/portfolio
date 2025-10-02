@@ -210,7 +210,7 @@
 
 
 
-@media (max-width: 750px) {
+@media (width < 750px) {
     .proyect-row {
         flex-direction: column;
         align-items: center;
@@ -289,7 +289,7 @@
     }
 
     .projects-mobile{
-        display: block;
+        display: block !important;
     }
 
     .proyect-card video{
