@@ -178,6 +178,9 @@ export const intro = [
 /* Experience                                                          */
 /* ------------------------------------------------------------------ */
 
+/** `preview` is a 480×300 screenshot in /public, shown when hovering the link. */
+export type Link = { label: string; href: string; preview?: string };
+
 export type Job = {
   org: OrgId;
   role: L;
@@ -187,7 +190,7 @@ export type Job = {
   summary: L;
   points: L[];
   stack: string[];
-  links?: { label: string; href: string }[];
+  links?: Link[];
 };
 
 export const experience: Job[] = [
@@ -220,8 +223,8 @@ export const experience: Job[] = [
     ],
     stack: ['Shopify', 'Liquid', 'Remix', 'Laravel', 'GraphQL', 'Node.js'],
     links: [
-      { label: 'incapto', href: 'https://incapto.com/' },
-      { label: 'talkual', href: 'https://www.talkualfoods.com/' },
+      { label: 'incapto', href: 'https://incapto.com/', preview: 'previews/incapto.webp' },
+      { label: 'talkual', href: 'https://www.talkualfoods.com/', preview: 'previews/talkual.webp' },
     ],
   },
   {
@@ -278,7 +281,7 @@ export type Item = {
   sub: L;
   body: L;
   meta?: L;
-  links?: { label: string; href: string }[];
+  links?: Link[];
 };
 
 export const ai: Item[] = [
@@ -290,7 +293,7 @@ export const ai: Item[] = [
       'Resúmenes con IA de las reseñas de compañías: un backend en Node hace streaming de la respuesta del LLM a la app token a token, mantiene claves y prompts en el servidor y limita el uso con cuotas diarias por usuario para que el coste sea predecible.',
     ),
     meta: l('2025 – now', '2025 – actualidad'),
-    links: [{ label: 'danza-app.com', href: 'https://danza-app.com' }],
+    links: [{ label: 'danza-app.com', href: 'https://danza-app.com', preview: 'previews/danza.webp' }],
   },
   {
     title: l('CS50AI', 'CS50AI'),
@@ -359,7 +362,7 @@ export const projects: Project[] = [
     ),
     start: '2025',
     stack: ['React Native', 'Expo', 'Node.js', 'Supabase', 'PostgreSQL', 'OpenAI API'],
-    links: [{ label: 'danza-app.com', href: 'https://danza-app.com' }],
+    links: [{ label: 'danza-app.com', href: 'https://danza-app.com', preview: 'previews/danza.webp' }],
   },
   {
     org: 'webimpacto',

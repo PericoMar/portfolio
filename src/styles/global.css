@@ -329,26 +329,31 @@ button {
   text-transform: none;
 }
 
-.chip-card {
+/* Hover cards: org notes on chips, site previews on row links (as on nitya.ca). */
+.chip-card,
+.link-preview {
   position: absolute;
   top: calc(100% + 8px);
-  left: 0;
   z-index: 10;
-  width: 260px;
-  padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--bg-elev);
   box-shadow: var(--shadow);
-  color: var(--text-2);
-  font-size: 14px;
-  line-height: 1.45;
-  white-space: normal;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
   pointer-events: none;
+}
+
+.chip-card {
+  left: 0;
+  width: 260px;
+  padding: 10px 12px;
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: normal;
 }
 
 .chip-card strong {
@@ -358,9 +363,27 @@ button {
   font-weight: 600;
 }
 
+.has-preview {
+  position: relative;
+}
+
+.link-preview {
+  right: 0;
+  width: 240px;
+  overflow: hidden;
+}
+
+.link-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 @media (hover: hover) {
   .chip:hover .chip-card,
-  .chip:focus-visible .chip-card {
+  .chip:focus-visible .chip-card,
+  .has-preview:hover .link-preview,
+  .has-preview:focus-visible .link-preview {
     opacity: 1;
     visibility: visible;
     transform: none;
@@ -368,7 +391,8 @@ button {
 }
 
 @media (hover: none), (max-width: 640px) {
-  .chip-card {
+  .chip-card,
+  .link-preview {
     display: none;
   }
 }

@@ -1,11 +1,12 @@
 ---
+import type { Link } from '../data/content';
 import { url } from '../lib/paths';
 
 interface Props {
   title: string;
   sub?: string;
   meta?: string | string[];
-  links?: { label: string; href: string }[];
+  links?: Link[];
 }
 
 const { title, sub, meta, links = [] } = Astro.props;
@@ -26,13 +27,20 @@ const external = (href: string) => /^https?:/.test(href);
     {metaLines.map((m) => <p>{m}</p>)}
     {links.length > 0 && (
       <p class="row-links">
-        {links.map((link) =>
-          external(link.href) ? (
-            <a href={link.href} target="_blank" rel="noopener">{link.label}</a>
-          ) : (
-            <a href={url(link.href)}>{link.label}</a>
-          ),
-        )}
+        {links.map((link) => (
+          <a
+            href={external(link.href) ? link.href : url(link.href)}
+            class={link.preview ? 'has-preview' : undefined}
+            {...(external(link.href) ? { target: '_blank', rel: 'noopener' } : {})}
+          >
+            {link.label}
+            {link.preview && (
+              <span class="link-preview" aria-hidden="true">
+                <img src={url(link.preview)} alt="" width="240" height="150" loading="lazy" decoding="async" />
+              </span>
+            )}
+          </a>
+        ))}
       </p>
     )}
   </div>
