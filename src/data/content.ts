@@ -56,6 +56,8 @@ export type OrgId =
 
 export type Org = {
   name: string;
+  /** Official logo in /public (64px PNG). Without one, `mark` is drawn on a `tile`. */
+  logo?: string;
   /** One or two characters drawn on the logo tile. */
   mark: string;
   /** Tile colour; the chip background is a tint of it. */
@@ -71,6 +73,7 @@ export type Org = {
 export const orgs: Record<OrgId, Org> = {
   webimpacto: {
     name: 'Webimpacto',
+    logo: 'logos/webimpacto.png',
     mark: 'w',
     tile: '#e11d48',
     href: '#experience',
@@ -78,6 +81,7 @@ export const orgs: Record<OrgId, Org> = {
   },
   kong: {
     name: 'Kong Consulting',
+    logo: 'logos/kong.png',
     mark: 'k',
     tile: '#e9a400',
     href: '#experience',
@@ -85,8 +89,9 @@ export const orgs: Record<OrgId, Org> = {
   },
   danza: {
     name: 'Danza App',
+    logo: 'logos/danza.png',
     mark: 'd',
-    tile: '#7c3aed',
+    tile: '#6b7280',
     href: '#projects',
     note: l(
       'Reviews and auditions for professional dancers · iOS, Android and web · freelance, 2025 – present',
@@ -95,6 +100,7 @@ export const orgs: Record<OrgId, Org> = {
   },
   shopify: {
     name: 'Shopify',
+    logo: 'logos/shopify.png',
     mark: 's',
     tile: '#5e8e3e',
     href: '#projects',
@@ -105,6 +111,7 @@ export const orgs: Record<OrgId, Org> = {
   },
   uoc: {
     name: 'UOC',
+    logo: 'logos/uoc.png',
     mark: 'u',
     tile: '#73edff',
     ink: '#000078',
@@ -120,6 +127,7 @@ export const orgs: Record<OrgId, Org> = {
   },
   cs50ai: {
     name: 'CS50AI',
+    logo: 'logos/cs50ai.png',
     mark: '50',
     tile: '#a51c30',
     href: '#ai',
@@ -130,6 +138,7 @@ export const orgs: Record<OrgId, Org> = {
   },
   anthropic: {
     name: 'Anthropic',
+    logo: 'logos/anthropic.png',
     mark: 'A\\',
     tile: '#d97757',
     href: '#ai',

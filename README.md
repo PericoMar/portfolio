@@ -20,7 +20,8 @@ certifications and all UI strings, in English and Spanish (`l('english', 'españ
 The content mirrors the [LinkedIn profile](https://www.linkedin.com/in/pedromargonz/); update it from there.
 
 - Show the "open to roles" line in the sidebar: `profile.availability.show = true`.
-- `{orgId}` inside the intro renders a logo chip from `orgs` (monogram tile + hover card).
+- `{orgId}` inside the intro renders a logo chip from `orgs`, with a hover card. Logos are 64px PNGs in
+  `public/logos/`, taken from each organisation's official site; without `logo`, a monogram tile is drawn.
 - Dates are ISO months (`'2025-10'`); leave `end` out for "present".
 - The source text keeps normal casing; the lowercase look is CSS only (`text-transform` on `body`).
 
