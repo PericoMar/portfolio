@@ -4,8 +4,9 @@
  * so updating your profile means editing only this file.
  *
  * Content mirrors the LinkedIn profile (linkedin.com/in/pedromargonz),
- * plus two additions that are not on LinkedIn yet: Danza App and the
- * VERI*FACTU / Cuaderno 19 work at Kong Consulting.
+ * plus additions that are not on LinkedIn yet: Danza App, the
+ * VERI*FACTU / Cuaderno 19 work at Kong Consulting and the full scope
+ * of the subscription work at Webimpacto (two migrations).
  *
  * Localized fields are `{ en, es }` pairs and get resolved per page.
  * Dates are ISO months (`'2025-10'`); a missing `end` means "present".
@@ -160,8 +161,8 @@ export const orgs: Record<OrgId, Org> = {
 /** `{orgId}` renders as a logo chip; in plain-text outputs it becomes the org name. */
 export const intro = [
   l(
-    'I build e-commerce infrastructure where mistakes cost real money. Currently at {webimpacto}, I’m the primary developer on a {shopify} subscription migration involving tens of thousands of active contracts. Before that, I spent two and a half years at {kong}, directing the technical side of our most complex projects.',
-    'Construyo infraestructura e-commerce donde los errores cuestan dinero real. Ahora en {webimpacto} soy el desarrollador principal de una migración de suscripciones en {shopify} con decenas de miles de contratos activos. Antes pasé dos años y medio en {kong}, dirigiendo la parte técnica de los proyectos más complejos.',
+    'I build e-commerce infrastructure where mistakes cost real money. At {webimpacto} I work on {shopify} subscription stores with tens of thousands of active contracts: making sure recurring billing holds up at that volume, adapting it to each client’s needs and designing systems that stay maintainable as they grow. I’ve been through two full subscription migrations. Before that, I spent two and a half years at {kong}, directing the technical side of our most complex projects.',
+    'Construyo infraestructura e-commerce donde los errores cuestan dinero real. En {webimpacto} trabajo con tiendas {shopify} de suscripción con decenas de miles de contratos activos: me aseguro de que los cobros recurrentes aguanten ese volumen, los adapto a las necesidades de cada cliente y diseño sistemas que sigan siendo mantenibles a medida que crecen. He participado en dos migraciones completas de suscripciones. Antes pasé dos años y medio en {kong}, dirigiendo la parte técnica de los proyectos más complejos.',
   ),
   l(
     'On the side I build {danza}, a cross-platform app for professional dancers with LLM-powered review summaries, and I’m experimenting heavily with AI-assisted development workflows. I’m finishing Computer Engineering at {uoc} and I’m certified in AI through {cs50ai} and {anthropic}.',
@@ -201,8 +202,12 @@ export const experience: Job[] = [
     ),
     points: [
       l(
-        'Primary developer on a subscription migration with tens of thousands of active contracts, and the team’s main technical reference for the subscription domain.',
-        'Desarrollador principal de una migración de suscripciones con decenas de miles de contratos activos y referente técnico del equipo en el dominio de suscripciones.',
+        'The team’s main technical reference for subscriptions: stores with tens of thousands of active contracts, recurring billing that holds up at that volume, client-specific needs and systems designed to stay maintainable as they scale.',
+        'Referente técnico del equipo en suscripciones: tiendas con decenas de miles de contratos activos, cobros recurrentes que aguantan ese volumen, necesidades específicas de cada cliente y sistemas diseñados para mantenerse a largo plazo.',
+      ),
+      l(
+        'Worked on two full subscription migrations, as primary developer on one of them.',
+        'He participado en dos migraciones completas de suscripciones, como desarrollador principal en una de ellas.',
       ),
       l(
         'Built the customer subscription portal and the backend for subscription management over WhatsApp.',
@@ -368,11 +373,11 @@ export const projects: Project[] = [
   },
   {
     org: 'webimpacto',
-    title: l('Subscription migration', 'Migración de suscripciones'),
-    sub: l('tens of thousands of contracts', 'decenas de miles de contratos'),
+    title: l('Subscription migrations', 'Migraciones de suscripciones'),
+    sub: l('two migrations · tens of thousands of contracts', 'dos migraciones · decenas de miles de contratos'),
     body: l(
-      'Full migration of active subscription contracts: billing cycle management, payment continuity and webhook-driven edge cases on Shopify’s subscription contracts API, plus GraphQL.',
-      'Migración completa de contratos de suscripción activos: gestión de ciclos de facturación, continuidad de pagos y casos límite gestionados con webhooks sobre la API de contratos de suscripción de Shopify y GraphQL.',
+      'Two full migrations of active subscription contracts: billing cycle management, payment continuity and webhook-driven edge cases on Shopify’s subscription contracts API and GraphQL.',
+      'Dos migraciones completas de contratos de suscripción activos: gestión de ciclos de facturación, continuidad de pagos y casos límite gestionados con webhooks sobre la API de contratos de suscripción de Shopify y GraphQL.',
     ),
     start: '2025-10',
   },
