@@ -16,11 +16,12 @@ const { c, locale } = Astro.props;
   {c.projects.map((p) => (
     <Row
       title={p.title}
-      sub={`${c.orgs[p.org].name} · ${p.sub}`}
+      sub={p.title === c.orgs[p.org].name ? p.sub : `${c.orgs[p.org].name} · ${p.sub}`}
       meta={formatPeriod(p.start, p.end, locale, c.ui.labels.now)}
       links={p.links}
     >
       <p>{p.body}</p>
+      {p.stack && <p class="row-stack">{p.stack.join(' · ')}</p>}
     </Row>
   ))}
 </Section>

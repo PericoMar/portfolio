@@ -3,8 +3,9 @@
  * Every page, /llms.txt and /resume.json are generated from this file,
  * so updating your profile means editing only this file.
  *
- * Content mirrors the LinkedIn profile (linkedin.com/in/pedromargonz):
- * keep it in sync from there rather than adding claims that only live here.
+ * Content mirrors the LinkedIn profile (linkedin.com/in/pedromargonz),
+ * plus two additions that are not on LinkedIn yet: Danza App and the
+ * VERI*FACTU / Cuaderno 19 work at Kong Consulting.
  *
  * Localized fields are `{ en, es }` pairs and get resolved per page.
  * Dates are ISO months (`'2025-10'`); a missing `end` means "present".
@@ -42,7 +43,16 @@ export const profile = {
 /* Organisations (the logo chips)                                      */
 /* ------------------------------------------------------------------ */
 
-export type OrgId = 'webimpacto' | 'kong' | 'shopify' | 'uoc' | 'camara' | 'cs50ai' | 'anthropic' | 'cambridge';
+export type OrgId =
+  | 'webimpacto'
+  | 'kong'
+  | 'danza'
+  | 'shopify'
+  | 'uoc'
+  | 'camara'
+  | 'cs50ai'
+  | 'anthropic'
+  | 'cambridge';
 
 export type Org = {
   name: string;
@@ -72,6 +82,16 @@ export const orgs: Record<OrgId, Org> = {
     tile: '#e9a400',
     href: '#experience',
     note: l('Consultancy in Seville · Apr 2023 – Oct 2025', 'Consultora en Sevilla · abr. 2023 – oct. 2025'),
+  },
+  danza: {
+    name: 'Danza App',
+    mark: 'd',
+    tile: '#7c3aed',
+    href: '#projects',
+    note: l(
+      'Reviews and auditions for professional dancers · iOS, Android and web · freelance, 2025 – present',
+      'Reseñas y audiciones para bailarines profesionales · iOS, Android y web · freelance, 2025 – actualidad',
+    ),
   },
   shopify: {
     name: 'Shopify',
@@ -135,8 +155,8 @@ export const intro = [
     'Construyo infraestructura e-commerce donde los errores cuestan dinero real. Ahora en {webimpacto} soy el desarrollador principal de una migración de suscripciones en {shopify} con decenas de miles de contratos activos. Antes pasé dos años y medio en {kong}, dirigiendo la parte técnica de los proyectos más complejos.',
   ),
   l(
-    'I’m finishing Computer Engineering at {uoc}, I’m certified in AI through {cs50ai} and {anthropic}, and lately I’m experimenting heavily with AI-assisted development workflows.',
-    'Estoy terminando Ingeniería Informática en la {uoc}, tengo certificaciones de IA de {cs50ai} y {anthropic}, y últimamente experimento mucho con flujos de desarrollo asistidos por IA.',
+    'On the side I build {danza}, a cross-platform app for professional dancers with LLM-powered review summaries, and I’m experimenting heavily with AI-assisted development workflows. I’m finishing Computer Engineering at {uoc} and I’m certified in AI through {cs50ai} and {anthropic}.',
+    'Por mi cuenta construyo {danza}, una app multiplataforma para bailarines profesionales con resúmenes de reseñas generados por LLM, y experimento mucho con flujos de desarrollo asistidos por IA. Estoy terminando Ingeniería Informática en la {uoc} y tengo certificaciones de IA de {cs50ai} y {anthropic}.',
   ),
   l(
     'I care about correctness in systems that touch money, and about leaving codebases better documented than I found them.',
@@ -210,6 +230,10 @@ export const experience: Job[] = [
         'Lideré una plataforma de seguros para más de 10.000 usuarios y un kiosco de autoservicio multi-tenant con hardware de pago e impresión.',
       ),
       l(
+        'Spanish invoicing compliance: VERI*FACTU and non-VERIFACTU invoicing, plus SEPA direct-debit remittances (Cuaderno 19).',
+        'Cumplimiento normativo en facturación: facturación VERI*FACTU y no VERIFACTU, y remesas de adeudos directos SEPA (Cuaderno 19).',
+      ),
+      l(
         'Containerised CI/CD with Docker and GitHub Actions that cut deployment times by 70%.',
         'CI/CD en contenedores con Docker y GitHub Actions que redujo los tiempos de despliegue un 70%.',
       ),
@@ -244,6 +268,16 @@ export type Item = {
 };
 
 export const ai: Item[] = [
+  {
+    title: l('LLM review summaries', 'Resúmenes con LLM'),
+    sub: l('Danza App', 'Danza App'),
+    body: l(
+      'AI summaries of dance-company reviews: a Node backend streams the LLM output to the app token by token, keeps keys and prompts server-side, and caps usage with per-user daily quotas so costs stay predictable.',
+      'Resúmenes con IA de las reseñas de compañías: un backend en Node hace streaming de la respuesta del LLM a la app token a token, mantiene claves y prompts en el servidor y limita el uso con cuotas diarias por usuario para que el coste sea predecible.',
+    ),
+    meta: l('2025 – now', '2025 – actualidad'),
+    links: [{ label: 'danza-app.com', href: 'https://danza-app.com' }],
+  },
   {
     title: l('CS50AI', 'CS50AI'),
     sub: l('Harvard · edX', 'Harvard · edX'),
@@ -298,9 +332,21 @@ export const ai: Item[] = [
 /* Projects (from the LinkedIn experience descriptions)                */
 /* ------------------------------------------------------------------ */
 
-export type Project = Item & { org: OrgId; start: string; end?: string };
+export type Project = Item & { org: OrgId; start: string; end?: string; stack?: string[] };
 
 export const projects: Project[] = [
+  {
+    org: 'danza',
+    title: l('Danza App', 'Danza App'),
+    sub: l('freelance · iOS · Android · web', 'freelance · iOS · Android · web'),
+    body: l(
+      'Cross-platform app where professional dancers review dance companies and track auditions worldwide. Built end-to-end with the product owner: data model, backend, AI layer and app-store release. Supabase / Postgres secured with Row-Level Security and role-based moderation; an audition engine that turns messy deadlines (“ASAP”, “always open”, several dates) into a clear traffic-light status. From a 15-hour MVP to native iOS and Android builds, plus newsletter and ads.',
+      'App multiplataforma donde bailarines profesionales reseñan compañías de danza y siguen audiciones de todo el mundo. Construida de punta a punta con el responsable de producto: modelo de datos, backend, capa de IA y publicación en las stores. Supabase / Postgres protegido con Row-Level Security y moderación por roles; un motor de audiciones que convierte plazos caóticos («ASAP», «siempre abierta», varias fechas) en un semáforo de estado claro. De un MVP de 15 horas a apps nativas para iOS y Android, con newsletter y anuncios.',
+    ),
+    start: '2025',
+    stack: ['React Native', 'Expo', 'Node.js', 'Supabase', 'PostgreSQL', 'OpenAI API'],
+    links: [{ label: 'danza-app.com', href: 'https://danza-app.com' }],
+  },
   {
     org: 'webimpacto',
     title: l('WhatsApp × Shopify', 'WhatsApp × Shopify'),
@@ -355,6 +401,17 @@ export const projects: Project[] = [
   },
   {
     org: 'kong',
+    title: l('E-invoicing & direct debits', 'Facturación y remesas'),
+    sub: l('VERI*FACTU · SEPA Cuaderno 19', 'VERI*FACTU · SEPA Cuaderno 19'),
+    body: l(
+      'Invoicing adapted to Spain’s anti-fraud regulation in both modes: VERI*FACTU, sending hash-chained invoice records to the Tax Agency (AEAT), and non-VERIFACTU, keeping them electronically signed with an event log — with the verification QR code on every invoice. Plus SEPA direct-debit remittance files (Cuaderno 19) to collect recurring payments through the bank.',
+      'Facturación adaptada al reglamento antifraude en sus dos modalidades: VERI*FACTU, enviando a la AEAT los registros de facturación encadenados con huella, y no VERIFACTU, conservándolos firmados electrónicamente con registro de eventos, con el código QR de verificación en cada factura. Además, ficheros de remesas de adeudos directos SEPA (Cuaderno 19) para cobrar recibos recurrentes a través del banco.',
+    ),
+    start: '2023-07',
+    end: '2025-10',
+  },
+  {
+    org: 'kong',
     title: l('ERP dashboards', 'Dashboards de ERP'),
     sub: l('construction sector', 'sector construcción'),
     body: l(
@@ -383,18 +440,28 @@ export const projects: Project[] = [
 
 export const skills: { group: L; items: string[] }[] = [
   { group: l('languages', 'lenguajes'), items: ['TypeScript', 'PHP', 'Python', 'GraphQL', 'Liquid', 'CSS'] },
-  { group: l('frameworks', 'frameworks'), items: ['Angular', 'RxJS', 'Laravel', 'Remix', 'Node.js'] },
   {
-    group: l('e-commerce', 'e-commerce'),
-    items: ['Shopify subscription contracts API', 'Shopify checkout', 'webhooks', 'Redsys'],
+    group: l('frameworks', 'frameworks'),
+    items: ['Angular', 'RxJS', 'Laravel', 'Remix', 'Node.js', 'React Native', 'Expo'],
+  },
+  {
+    group: l('commerce & billing', 'comercio y facturación'),
+    items: ['Shopify subscription contracts API', 'Shopify checkout', 'webhooks', 'Redsys', 'VERI*FACTU', 'SEPA Cuaderno 19'],
   },
   {
     group: l('data & infra', 'datos e infra'),
-    items: ['SQL Server', 'MySQL', 'Docker', 'GitHub Actions', 'Azure DevOps', 'Git'],
+    items: ['SQL Server', 'MySQL', 'PostgreSQL', 'Supabase', 'Docker', 'GitHub Actions', 'Azure DevOps', 'Git'],
   },
   {
     group: l('ai', 'ia'),
-    items: ['Python', 'CS50AI: search, ML, neural networks, NLP', 'Claude Code', 'AI-assisted development'],
+    items: [
+      'OpenAI API',
+      'LLM streaming',
+      'Python',
+      'CS50AI: search, ML, neural networks, NLP',
+      'Claude Code',
+      'AI-assisted development',
+    ],
   },
   {
     group: l('soft skills', 'transversales'),
@@ -442,8 +509,8 @@ export const ui = {
   meta: {
     title: l('Pedro Martínez — Full-Stack Developer', 'Pedro Martínez — Desarrollador Full-Stack'),
     description: l(
-      'Mid-level full-stack developer in Seville building Shopify subscription and payment infrastructure with Laravel, Angular, Node.js and GraphQL. CS50AI and Claude Code certified.',
-      'Desarrollador full-stack mid-level en Sevilla: infraestructura de suscripciones y pagos en Shopify con Laravel, Angular, Node.js y GraphQL. Certificado en CS50AI y Claude Code.',
+      'Mid-level full-stack developer in Seville building Shopify subscription and payment infrastructure with Laravel, Angular, Node.js and GraphQL, plus LLM-powered features in Danza App. CS50AI and Claude Code certified.',
+      'Desarrollador full-stack mid-level en Sevilla: infraestructura de suscripciones y pagos en Shopify con Laravel, Angular, Node.js y GraphQL, y funcionalidades con LLM en Danza App. Certificado en CS50AI y Claude Code.',
     ),
   },
   nav: {

@@ -41,6 +41,7 @@ export const GET: APIRoute = ({ site }) => {
       '',
       `### ${p.title} — ${c.orgs[p.org].name}, ${p.sub} (${period(p.start, p.end)})`,
       p.body,
+      ...(p.stack ? [`- Stack: ${p.stack.join(', ')}`] : []),
       ...(p.links ?? []).map((link) => `- ${link.label}: ${abs(link.href)}`),
     ]),
     '',
