@@ -1,0 +1,178 @@
+---
+import Icon from './Icon.astro';
+import type { Content, Locale } from '../data/content';
+import { url } from '../lib/paths';
+
+interface Props {
+  c: Content;
+  locale: Locale;
+}
+
+const { c, locale } = Astro.props;
+const other: Locale = locale === 'en' ? 'es' : 'en';
+const links = [
+  { href: '#work', label: c.ui.nav.work },
+  { href: '#ai', label: c.ui.nav.ai },
+  { href: '#experience', label: c.ui.nav.experience },
+  { href: '#about', label: c.ui.nav.about },
+];
+---
+
+<a class="skip-link" href="#main">{c.ui.a11y.skip}</a>
+
+<header class="site-nav" data-nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label={c.profile.shortName}>
+      <span class="brand-mark" aria-hidden="true">pm</span>
+      <span class="brand-name">{c.profile.shortName}</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      {links.map((l) => <a href={l.href} data-nav-link>{l.label}</a>)}
+    </nav>
+
+    <div class="nav-actions">
+      <a
+        class="icon-btn lang"
+        href={url(other === 'en' ? '' : `${other}/`)}
+        hreflang={other}
+        lang={other}
+        aria-label={c.ui.a11y.lang}
+        title={c.ui.a11y.lang}
+      >
+        <span class="mono">{c.ui.a11y.langShort}</span>
+      </a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label={c.ui.a11y.theme} title={c.ui.a11y.theme}>
+        <Icon name="sun" class="i-sun" />
+        <Icon name="moon" class="i-moon" />
+      </button>
+      <a class="btn btn-primary nav-cta" href="#contact">{c.ui.nav.contact}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--nav-h);
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+  }
+
+  .site-nav.is-scrolled {
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom-color: var(--line);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+  }
+
+  .nav-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 560;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 0.55rem;
+    background: var(--brand);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    box-shadow: 0 6px 18px -8px var(--accent-glow);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bg-elev) 70%, transparent);
+  }
+
+  .nav-links a {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .nav-links a[aria-current='true'] {
+    color: var(--text);
+    background: var(--bg-sunk);
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-cta {
+    min-height: 2.5rem;
+    padding-inline: 1rem;
+    font-size: 0.88rem;
+  }
+
+  .lang .mono {
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  :global(.i-moon) {
+    display: none;
+  }
+
+  :global([data-theme='dark'] .i-sun) {
+    display: none;
+  }
+
+  :global([data-theme='dark'] .i-moon) {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light']) .i-sun) {
+      display: none;
+    }
+
+    :global(:root:not([data-theme='light']) .i-moon) {
+      display: block;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .nav-links {
+      display: none;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .brand-name {
+      display: none;
+    }
+  }
+</style>

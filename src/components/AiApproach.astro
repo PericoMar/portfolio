@@ -1,0 +1,190 @@
+---
+import Icon from './Icon.astro';
+import type { Content } from '../data/content';
+import { url } from '../lib/paths';
+
+interface Props {
+  c: Content;
+}
+
+const { c } = Astro.props;
+const files = [
+  { href: url('llms.txt'), name: 'llms.txt', hint: 'text/plain' },
+  { href: url('resume.json'), name: 'resume.json', hint: 'JSON Resume' },
+];
+---
+
+<section class="section ai" id="ai" aria-labelledby="ai-title">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">02 · {c.ui.nav.ai}</p>
+      <h2 class="section-title" id="ai-title">{c.ui.sections.ai}</h2>
+      <p class="intro">{c.aiApproach.intro}</p>
+    </header>
+
+    <ol class="principles">
+      {c.aiApproach.principles.map((p, i) => (
+        <li class="principle spotlight" data-reveal data-spotlight style={`--reveal-delay:${i * 0.08}s`}>
+          <p class="tag mono">
+            <span class="n">{String(i + 1).padStart(2, '0')}</span>
+            {p.tag}
+          </p>
+          <h3>{p.title}</h3>
+          <p class="body">{p.body}</p>
+        </li>
+      ))}
+    </ol>
+
+    <aside class="readable" data-reveal>
+      <div class="readable-text">
+        <p class="readable-title">
+          <Icon name="sparkle" class="spark" />
+          {c.aiApproach.machineReadable.title}
+        </p>
+        <p class="readable-body">{c.aiApproach.machineReadable.body}</p>
+      </div>
+      <ul class="files">
+        {files.map((f) => (
+          <li>
+            <a class="file" href={f.href}>
+              <Icon name="file" />
+              <span class="mono file-name">/{f.name}</span>
+              <span class="mono file-hint">{f.hint}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .ai {
+    background:
+      linear-gradient(var(--bg), transparent 20%, transparent 80%, var(--bg)),
+      radial-gradient(var(--line) 1px, transparent 1px) 0 0 / 22px 22px;
+  }
+
+  .intro {
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .principle {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    padding: 1.5rem 1.4rem 1.6rem;
+  }
+
+  .tag {
+    display: inline-flex;
+    gap: 0.55rem;
+    color: var(--faint);
+  }
+
+  .n {
+    color: var(--accent);
+  }
+
+  .principle h3 {
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  .body {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .readable {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem 2rem;
+    margin-top: 1rem;
+    padding: 1.25rem 1.4rem;
+    border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+    border-radius: var(--radius);
+    background: var(--accent-soft);
+  }
+
+  .readable-text {
+    display: grid;
+    gap: 0.3rem;
+    max-width: 34rem;
+  }
+
+  .readable-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 560;
+  }
+
+  .readable :global(.spark) {
+    width: 1rem;
+    height: 1rem;
+    color: var(--accent);
+  }
+
+  .readable-body {
+    color: var(--muted);
+    font-size: 0.93rem;
+  }
+
+  .files {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .file {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-elev);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .file:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .file :global(svg) {
+    width: 1rem;
+    height: 1rem;
+    color: var(--accent);
+  }
+
+  .file-name {
+    color: var(--text);
+    font-size: 0.82rem;
+  }
+
+  .file-hint {
+    color: var(--faint);
+    font-size: 0.68rem;
+  }
+
+  @media (max-width: 900px) {
+    .principles {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

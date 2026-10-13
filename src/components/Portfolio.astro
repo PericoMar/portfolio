@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Work from './Work.astro';
+import AiApproach from './AiApproach.astro';
+import Experience from './Experience.astro';
+import About from './About.astro';
+import Contact from './Contact.astro';
+import { getContent, type Locale } from '../data/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = getContent(locale);
+---
+
+<Base locale={locale} title={c.ui.meta.title} description={c.ui.meta.description}>
+  <Nav c={c} locale={locale} />
+  <main id="main">
+    <Hero c={c} />
+    <Work c={c} />
+    <AiApproach c={c} />
+    <Experience c={c} />
+    <About c={c} />
+    <Contact c={c} />
+  </main>
+</Base>
+
+<script>
+  import '../scripts/main.ts';
+</script>

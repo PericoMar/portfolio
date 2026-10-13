@@ -1,0 +1,202 @@
+---
+import type { Content } from '../data/content';
+
+type Flow = Content['featured'][number]['flow'];
+
+interface Props {
+  flow: Flow;
+  label: string;
+}
+
+const { flow, label } = Astro.props;
+const cols = flow.map(() => 'minmax(0, 1fr)').join(' 1.6rem ');
+---
+
+<figure class="flow" aria-label={label}>
+  <figcaption class="flow-label mono">{label}</figcaption>
+  <div class="flow-cols" style={`--cols: ${cols}`}>
+    {flow.map((col, i) => (
+      <>
+        {i > 0 && (
+          <div class="wire" aria-hidden="true">
+            <span class="packet" style={`--d:${i * 0.6}s`}></span>
+          </div>
+        )}
+        <ul class="col">
+          {col.map((n) => (
+            <li class:list={['node', { ai: n.ai }]}>
+              <span class="node-label">
+                {n.ai && <span class="ai-badge mono">AI</span>}
+                {n.label}
+              </span>
+              {n.sub && <span class="node-sub mono">{n.sub}</span>}
+            </li>
+          ))}
+        </ul>
+      </>
+    ))}
+  </div>
+</figure>
+
+<style>
+  .flow {
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background:
+      radial-gradient(var(--line) 1px, transparent 1px) 0 0 / 14px 14px,
+      var(--bg-sunk);
+  }
+
+  .flow-label {
+    margin-bottom: 0.85rem;
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.68rem;
+  }
+
+  .flow-cols {
+    display: grid;
+    grid-template-columns: var(--cols);
+    align-items: center;
+  }
+
+  .col {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .node {
+    display: grid;
+    gap: 0.1rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--bg-elev);
+    box-shadow: 0 6px 16px -14px rgb(0 0 0 / 0.6);
+  }
+
+  .node.ai {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    background: linear-gradient(var(--accent-soft), var(--accent-soft)), var(--bg-elev);
+    box-shadow: 0 0 0 3px var(--accent-soft), 0 10px 24px -14px var(--accent-glow);
+  }
+
+  .node-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.84rem;
+    font-weight: 560;
+    line-height: 1.25;
+  }
+
+  .node-sub {
+    color: var(--faint);
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .ai-badge {
+    padding: 0.05rem 0.3rem;
+    border-radius: 4px;
+    background: var(--brand);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 600;
+  }
+
+  .wire {
+    position: relative;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--line-strong) 0 4px, transparent 4px 8px);
+  }
+
+  .wire::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -3px;
+    border: 3.5px solid transparent;
+    border-left: 5px solid var(--line-strong);
+    border-right: 0;
+  }
+
+  .packet {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: travel 2.4s ease-in-out infinite;
+    animation-delay: var(--d);
+  }
+
+  @keyframes travel {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+    15%,
+    85% {
+      opacity: 1;
+    }
+    100% {
+      left: calc(100% - 5px);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .flow-cols {
+      grid-template-columns: 1fr;
+      justify-items: stretch;
+    }
+
+    .wire {
+      justify-self: center;
+      width: 1px;
+      height: 1.4rem;
+      background: repeating-linear-gradient(180deg, var(--line-strong) 0 4px, transparent 4px 8px);
+    }
+
+    .wire::after {
+      right: auto;
+      left: -3px;
+      top: auto;
+      bottom: -1px;
+      border: 3.5px solid transparent;
+      border-top: 5px solid var(--line-strong);
+      border-bottom: 0;
+    }
+
+    .packet {
+      left: -2px;
+      animation-name: travel-y;
+    }
+
+    .col {
+      grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    }
+
+    @keyframes travel-y {
+      0% {
+        top: 0;
+        opacity: 0;
+      }
+      15%,
+      85% {
+        opacity: 1;
+      }
+      100% {
+        top: calc(100% - 5px);
+        opacity: 0;
+      }
+    }
+  }
+</style>
