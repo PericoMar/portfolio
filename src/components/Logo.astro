@@ -1,0 +1,17 @@
+---
+import type { Org } from '../data/content';
+
+interface Props {
+  org: Pick<Org, 'mark' | 'tile' | 'ink'>;
+}
+
+const { org } = Astro.props;
+const size = org.mark.length > 1 ? 9 : 12;
+---
+
+<svg class="logo" viewBox="0 0 20 20" aria-hidden="true">
+  <rect width="20" height="20" rx="4.5" fill={org.tile}></rect>
+  <text x="10" y="10.5" text-anchor="middle" dominant-baseline="middle" font-size={size} font-weight="700" fill={org.ink ?? '#fff'}>
+    {org.mark}
+  </text>
+</svg>

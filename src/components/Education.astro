@@ -1,0 +1,23 @@
+---
+import Section from './Section.astro';
+import type { Content, Locale } from '../data/content';
+import { formatPeriod } from '../lib/format';
+
+interface Props {
+  c: Content;
+  locale: Locale;
+}
+
+const { c, locale } = Astro.props;
+---
+
+<Section id="education" title={c.ui.nav.education}>
+  <ul class="rows">
+    {c.education.map((e) => (
+      <li class="row row--record">
+        <span>{e.school}, {e.degree}</span>
+        <span class="row-meta">{formatPeriod(e.start, e.end, locale, c.ui.labels.now)}</span>
+      </li>
+    ))}
+  </ul>
+</Section>

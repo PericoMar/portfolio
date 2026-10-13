@@ -1,0 +1,26 @@
+---
+import Row from './Row.astro';
+import Section from './Section.astro';
+import type { Content, Locale } from '../data/content';
+import { formatPeriod } from '../lib/format';
+
+interface Props {
+  c: Content;
+  locale: Locale;
+}
+
+const { c, locale } = Astro.props;
+---
+
+<Section id="projects" title={c.ui.nav.projects}>
+  {c.projects.map((p) => (
+    <Row
+      title={p.title}
+      sub={`${c.orgs[p.org].name} · ${p.sub}`}
+      meta={formatPeriod(p.start, p.end, locale, c.ui.labels.now)}
+      links={p.links}
+    >
+      <p>{p.body}</p>
+    </Row>
+  ))}
+</Section>

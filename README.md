@@ -1,22 +1,28 @@
 # Pedro Martínez — Portfolio
 
-Personal portfolio focused on full-stack and AI engineering roles.
+Personal portfolio for development recruiters, with an emphasis on AI.
 Live at **https://pericomar.github.io/portfolio/** (English) and **/es/** (Spanish).
+
+Minimal layout inspired by [nitya.ca](https://www.nitya.ca/): fixed sidebar, everything in lowercase,
+logo chips in the intro and table-like rows for each section.
 
 ## Stack
 
 - [Astro](https://astro.build) — static output, zero client framework, a few lines of vanilla TS.
-- Self-hosted fonts (Geist, Geist Mono, Instrument Serif) — no third-party requests.
+- Self-hosted Geist font — no third-party requests.
 - GitHub Actions → GitHub Pages on every push to `main`.
 
 ## Editing content
 
-Everything lives in **`src/data/content.ts`** — profile, projects, experience, skills and all UI strings,
-in English and Spanish (`l('english', 'español')`). The pages, `/llms.txt` and `/resume.json`
-are all generated from that file, so it is the only place you need to touch.
+Everything lives in **`src/data/content.ts`** — profile, experience, AI, projects, skills, education,
+certifications and all UI strings, in English and Spanish (`l('english', 'español')`). The pages,
+`/llms.txt` and `/resume.json` are all generated from that file, so it is the only place you need to touch.
+The content mirrors the [LinkedIn profile](https://www.linkedin.com/in/pedromargonz/); update it from there.
 
-- Hide the "open to roles" pill: `profile.availability.show = false`.
-- Text wrapped in `*asterisks*` in titles renders in the serif accent.
+- Show the "open to roles" line in the sidebar: `profile.availability.show = true`.
+- `{orgId}` inside the intro renders a logo chip from `orgs` (monogram tile + hover card).
+- Dates are ISO months (`'2025-10'`); leave `end` out for "present".
+- The source text keeps normal casing; the lowercase look is CSS only (`text-transform` on `body`).
 
 ## Machine-readable profile
 

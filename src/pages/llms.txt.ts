@@ -1,68 +1,60 @@
 import type { APIRoute } from 'astro';
 import { getContent } from '../data/content';
+import { formatMonth, formatPeriod, plainChips } from '../lib/format';
 import { url } from '../lib/paths';
 
 /** Plain-text profile for LLMs and AI screening tools (https://llmstxt.org). */
 export const GET: APIRoute = ({ site }) => {
   const c = getContent('en');
-  const abs = (p: string) => new URL(url(p), site).href;
-  const strip = (s: string) => s.replace(/\*/g, '');
+  const abs = (p: string) => (/^https?:/.test(p) ? p : new URL(url(p), site).href);
+  const period = (start: string, end?: string) => formatPeriod(start, end, 'en', 'present');
 
   const lines = [
     `# ${c.profile.name}`,
     '',
-    `> ${c.profile.role} based in ${c.profile.location}. ${strip(c.hero.title)}`,
+    `> ${c.profile.headline} based in ${c.profile.location}.`,
     '',
-    c.hero.lead,
-    '',
-    '## At a glance',
-    ...c.hero.facts.map((f) => `- ${f.k}: ${f.v}`),
-    ...(c.profile.availability.show ? [`- Availability: ${c.profile.availability.label}`] : []),
-    '',
+    ...c.intro.flatMap((p) => [plainChips(p, c.orgs), '']),
     '## Contact',
     `- Email: ${c.profile.email}`,
     `- LinkedIn: ${c.profile.linkedin}`,
     `- GitHub: ${c.profile.github}`,
-    '',
-    '## Selected work',
-    ...c.featured.flatMap((p) => [
-      '',
-      `### ${p.title}`,
-      `${p.kicker}`,
-      '',
-      p.summary,
-      ...p.highlights.map((h) => `- ${h}`),
-      ...(p.outcome ? [`- Outcome: ${p.outcome}`] : []),
-      `- Stack: ${p.stack.join(', ')}`,
-      ...(p.link ? [`- Link: ${p.link.href}`] : []),
-    ]),
-    '',
-    '### Also shipped',
-    ...c.alsoShipped.map((a) => `- ${a.title}: ${a.body}`),
-    '',
-    '## How I build with AI',
-    c.aiApproach.intro,
-    ...c.aiApproach.principles.map((p) => `- ${p.title}: ${p.body}`),
+    ...(c.profile.availability.show ? [`- Availability: ${c.profile.availability.label}`] : []),
     '',
     '## Experience',
     ...c.experience.flatMap((j) => [
       '',
-      `### ${j.role}${j.company ? ` — ${j.company}` : ''} (${j.period}, ${j.place})`,
-      j.summary,
-      ...j.points.map((p) => `- ${p}`),
+      `### ${j.role} — ${c.orgs[j.org].name} (${period(j.start, j.end)} · ${j.type})`,
+      ...[j.summary, ...j.points].map((p) => `- ${p}`),
+      `- Stack: ${j.stack.join(', ')}`,
+    ]),
+    '',
+    '## AI',
+    ...c.ai.map(
+      (a) =>
+        `- ${a.title} (${a.sub}${a.meta ? `, ${a.meta}` : ''}): ${a.body}` +
+        (a.links ? ` ${a.links.map((link) => abs(link.href)).join(', ')}` : ''),
+    ),
+    '',
+    '## Projects',
+    ...c.projects.flatMap((p) => [
+      '',
+      `### ${p.title} — ${c.orgs[p.org].name}, ${p.sub} (${period(p.start, p.end)})`,
+      p.body,
+      ...(p.links ?? []).map((link) => `- ${link.label}: ${abs(link.href)}`),
     ]),
     '',
     '## Skills',
-    ...c.toolbox.map((g) => `- ${g.group}: ${g.items.join(', ')}`),
-    '',
-    '## Education',
-    ...c.education.map((e) => `- ${e.title} — ${e.school} (${e.period})${e.note ? `. ${e.note}` : ''}`),
+    ...c.skills.map((g) => `- ${g.group}: ${g.items.join(', ')}`),
     '',
     '## Languages',
-    ...c.profile.languages.map((l) => `- ${l.name}: ${l.level}`),
+    ...c.languages.map((lang) => `- ${lang.name}: ${lang.level}`),
     '',
-    '## About',
-    ...c.about.paragraphs,
+    '## Education',
+    ...c.education.map((e) => `- ${e.degree} — ${e.school} (${period(e.start, e.end)})`),
+    '',
+    '## Certifications',
+    ...c.certifications.map((cert) => `- ${cert.name} — ${cert.issuer}${cert.date ? ` (${formatMonth(cert.date, 'en')})` : ''}`),
     '',
     '## Links',
     `- [Portfolio (English)](${abs('')})`,

@@ -1,0 +1,39 @@
+---
+import { url } from '../lib/paths';
+
+interface Props {
+  title: string;
+  sub?: string;
+  meta?: string | string[];
+  links?: { label: string; href: string }[];
+}
+
+const { title, sub, meta, links = [] } = Astro.props;
+// Keep "Oct 2025" together so ranges only wrap at the dash.
+const metaLines = [meta ?? []].flat().filter(Boolean).map((m) => m.replace(/ (?=\d{4})/g, '\u00a0'));
+const external = (href: string) => /^https?:/.test(href);
+---
+
+<div class="row">
+  <div class="row-head">
+    <h3 class="row-title">{title}</h3>
+    {sub && <p class="row-sub">{sub}</p>}
+  </div>
+  <div class="row-body">
+    <slot />
+  </div>
+  <div class="row-meta">
+    {metaLines.map((m) => <p>{m}</p>)}
+    {links.length > 0 && (
+      <p class="row-links">
+        {links.map((link) =>
+          external(link.href) ? (
+            <a href={link.href} target="_blank" rel="noopener">{link.label}</a>
+          ) : (
+            <a href={url(link.href)}>{link.label}</a>
+          ),
+        )}
+      </p>
+    )}
+  </div>
+</div>

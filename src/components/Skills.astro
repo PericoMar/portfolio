@@ -1,0 +1,28 @@
+---
+import Section from './Section.astro';
+import type { Content } from '../data/content';
+
+interface Props {
+  c: Content;
+}
+
+const { c } = Astro.props;
+const rows = [
+  ...c.skills.map((s) => ({ group: s.group, items: s.items.join(', ') })),
+  {
+    group: c.ui.labels.spoken,
+    items: c.languages.map((lang) => `${lang.name} — ${lang.level}`).join(', '),
+  },
+];
+---
+
+<Section id="skills" title={c.ui.nav.skills}>
+  <dl class="rows">
+    {rows.map((r) => (
+      <div class="row row--2">
+        <dt class="row-title">{r.group}</dt>
+        <dd class="row-body">{r.items}</dd>
+      </div>
+    ))}
+  </dl>
+</Section>

@@ -1,0 +1,60 @@
+---
+import type { Content, Locale } from '../data/content';
+import { url } from '../lib/paths';
+
+interface Props {
+  c: Content;
+  locale: Locale;
+}
+
+const { c, locale } = Astro.props;
+const other: Locale = locale === 'en' ? 'es' : 'en';
+const sections = ['experience', 'ai', 'projects', 'skills', 'education', 'certifications'] as const;
+const contact = [
+  { label: c.profile.email, href: `mailto:${c.profile.email}` },
+  { label: 'linkedin', href: c.profile.linkedin },
+  { label: 'github', href: c.profile.github },
+];
+---
+
+<aside class="sidebar">
+  <h1 class="name"><a href="#top">{c.profile.shortName}</a></h1>
+  <p class="who">
+    {c.profile.headline}<br />
+    {c.profile.location}
+  </p>
+  {c.profile.availability.show && (
+    <p class="status">
+      <span class="status-dot" aria-hidden="true"></span>
+      {c.profile.availability.label}
+    </p>
+  )}
+
+  <nav class="side-nav" aria-label={c.ui.a11y.primary}>
+    <ul>
+      {sections.map((id) => (
+        <li>
+          <a href={`#${id}`} data-nav-link>{c.ui.nav[id]}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <ul class="side-links">
+    {contact.map((link) => (
+      <li>
+        <a href={link.href} {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})}>
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <p class="side-prefs">
+    <a href={url(other === 'en' ? '' : `${other}/`)} hreflang={other} lang={other}>{c.ui.a11y.lang}</a>
+    <button type="button" data-theme-toggle>
+      <span class="to-dark">{c.ui.a11y.dark}</span>
+      <span class="to-light">{c.ui.a11y.light}</span>
+    </button>
+  </p>
+</aside>

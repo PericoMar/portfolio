@@ -1,13 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import Nav from './Nav.astro';
-import Hero from './Hero.astro';
-import Work from './Work.astro';
-import AiApproach from './AiApproach.astro';
+import Sidebar from './Sidebar.astro';
+import Intro from './Intro.astro';
 import Experience from './Experience.astro';
-import About from './About.astro';
-import Contact from './Contact.astro';
+import Ai from './Ai.astro';
+import Projects from './Projects.astro';
+import Skills from './Skills.astro';
+import Education from './Education.astro';
+import Certifications from './Certifications.astro';
 import { getContent, type Locale } from '../data/content';
+import { formatMonth } from '../lib/format';
 
 interface Props {
   locale: Locale;
@@ -15,18 +17,28 @@ interface Props {
 
 const { locale } = Astro.props;
 const c = getContent(locale);
+const updated = formatMonth(new Date().toISOString().slice(0, 7), locale);
 ---
 
 <Base locale={locale} title={c.ui.meta.title} description={c.ui.meta.description}>
-  <Nav c={c} locale={locale} />
-  <main id="main">
-    <Hero c={c} />
-    <Work c={c} />
-    <AiApproach c={c} />
-    <Experience c={c} />
-    <About c={c} />
-    <Contact c={c} />
-  </main>
+  <a class="skip-link" href="#main">{c.ui.a11y.skip}</a>
+  <div class="arcs" aria-hidden="true"></div>
+
+  <div class="page">
+    <Sidebar c={c} locale={locale} />
+    <main id="main">
+      <Intro c={c} />
+      <Experience c={c} locale={locale} />
+      <Ai c={c} />
+      <Projects c={c} locale={locale} />
+      <Skills c={c} />
+      <Education c={c} locale={locale} />
+      <Certifications c={c} locale={locale} />
+      <footer class="foot">
+        <p>{c.ui.footer.built} {c.ui.footer.updated}: {updated}.</p>
+      </footer>
+    </main>
+  </div>
 </Base>
 
 <script>

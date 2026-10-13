@@ -1,0 +1,22 @@
+---
+import Logo from './Logo.astro';
+import type { Content, OrgId } from '../data/content';
+
+interface Props {
+  c: Content;
+  id: OrgId;
+}
+
+const { c, id } = Astro.props;
+const org = c.orgs[id];
+const noteId = `chip-note-${id}`;
+---
+
+<a class="chip" href={org.href} style={`--tile: ${org.tile}`} aria-describedby={noteId}>
+  <Logo org={org} />
+  <span>{org.name}</span>
+  <span class="chip-card" id={noteId} aria-hidden="true">
+    <strong>{org.name}</strong>
+    {org.note}
+  </span>
+</a>

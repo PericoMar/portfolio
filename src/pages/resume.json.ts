@@ -1,19 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getContent } from '../data/content';
+import { plainChips } from '../lib/format';
 import { url } from '../lib/paths';
-
-const months: Record<string, string> = {
-  Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06',
-  Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12',
-};
-
-/** "Mar 2023 — Oct 2025" → ["2023-03", "2025-10"]; "2025 — Present" → ["2025", undefined] */
-const parsePeriod = (period: string) =>
-  period.split('—').map((part) => {
-    const m = part.trim().match(/^(?:([A-Z][a-z]{2}) )?(\d{4})$/);
-    if (!m) return undefined;
-    return m[1] ? `${m[2]}-${months[m[1]]}` : m[2];
-  });
 
 /** Profile in the JSON Resume format (https://jsonresume.org/schema). */
 export const GET: APIRoute = ({ site }) => {
@@ -24,41 +12,42 @@ export const GET: APIRoute = ({ site }) => {
     $schema: 'https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json',
     basics: {
       name: c.profile.name,
-      label: c.profile.role,
+      label: c.profile.headline,
       email: c.profile.email,
       url: abs(''),
-      summary: c.hero.lead,
-      location: { city: 'Seville', countryCode: 'ES' },
+      summary: c.intro.map((p) => plainChips(p, c.orgs)).join(' '),
+      location: { city: 'Tomares', region: 'Andalucía', countryCode: 'ES' },
       profiles: [
         { network: 'LinkedIn', username: 'pedromargonz', url: c.profile.linkedin },
         { network: 'GitHub', username: 'PericoMar', url: c.profile.github },
       ],
     },
-    work: c.experience.map((j) => {
-      const [startDate, endDate] = parsePeriod(j.period);
-      return {
-        name: j.company ?? undefined,
-        position: j.role,
-        location: j.place,
-        startDate,
-        endDate,
-        summary: j.summary,
-        highlights: j.points,
-      };
-    }),
-    projects: c.featured.map((p) => ({
-      name: p.title,
-      description: p.summary,
-      highlights: p.highlights,
-      keywords: p.stack,
-      url: p.link?.href,
+    work: c.experience.map((j) => ({
+      name: c.orgs[j.org].name,
+      position: j.role,
+      location: j.type,
+      startDate: j.start,
+      endDate: j.end,
+      summary: j.summary,
+      highlights: j.points,
     })),
-    education: c.education.map((e) => {
-      const [startDate, endDate] = parsePeriod(e.period);
-      return { institution: e.school, studyType: e.title, startDate, endDate };
-    }),
-    skills: c.toolbox.map((g) => ({ name: g.group, keywords: g.items })),
-    languages: c.profile.languages.map((l) => ({ language: l.name, fluency: l.level })),
+    projects: c.projects.map((p) => ({
+      name: p.title,
+      entity: c.orgs[p.org].name,
+      description: p.body,
+      keywords: [p.sub],
+      startDate: p.start,
+      endDate: p.end,
+    })),
+    education: c.education.map((e) => ({
+      institution: e.school,
+      area: e.degree,
+      startDate: e.start,
+      endDate: e.end,
+    })),
+    certificates: c.certifications.map((cert) => ({ name: cert.name, issuer: cert.issuer, date: cert.date })),
+    skills: c.skills.map((g) => ({ name: g.group, keywords: g.items })),
+    languages: c.languages.map((lang) => ({ language: lang.name, fluency: lang.level })),
     meta: { canonical: abs('resume.json'), lastModified: new Date().toISOString() },
   };
 

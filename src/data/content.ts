@@ -3,7 +3,11 @@
  * Every page, /llms.txt and /resume.json are generated from this file,
  * so updating your profile means editing only this file.
  *
+ * Content mirrors the LinkedIn profile (linkedin.com/in/pedromargonz):
+ * keep it in sync from there rather than adding claims that only live here.
+ *
  * Localized fields are `{ en, es }` pairs and get resolved per page.
+ * Dates are ISO months (`'2025-10'`); a missing `end` means "present".
  */
 
 export const locales = ['en', 'es'] as const;
@@ -19,363 +23,416 @@ const l = (en: string, es: string): L => ({ en, es });
 export const profile = {
   name: 'Pedro Martínez González',
   shortName: 'Pedro Martínez',
+  headline: l('Mid-Level Full-Stack Developer', 'Desarrollador Full-Stack Mid-Level'),
+  location: l('Tomares, Seville, Spain', 'Tomares, Sevilla, España'),
   email: 'pedromartinezgon0511@gmail.com',
   linkedin: 'https://www.linkedin.com/in/pedromargonz/',
   github: 'https://github.com/PericoMar',
-  location: l('Seville, Spain', 'Sevilla, España'),
-  role: l('Full-stack & AI Developer', 'Desarrollador Full-stack & IA'),
-  /** Set `show: false` to hide the availability pill in the hero. */
+  /**
+   * On LinkedIn "open to work" is visible to recruiters only,
+   * so it stays hidden here too. Set `show: true` to display it in the sidebar.
+   */
   availability: {
-    show: true,
-    label: l('Open to full-stack & AI roles', 'Abierto a roles full-stack e IA'),
+    show: false,
+    label: l('Open to roles · Seville, on-site, hybrid or remote', 'Abierto a ofertas · Sevilla, presencial, híbrido o remoto'),
   },
-  languages: [
-    { name: l('Spanish', 'Español'), level: l('Native', 'Nativo') },
-    { name: l('English', 'Inglés'), level: l('C1 · Professional', 'C1 · Profesional') },
-  ],
 };
 
 /* ------------------------------------------------------------------ */
-/* Hero                                                                */
+/* Organisations (the logo chips)                                      */
 /* ------------------------------------------------------------------ */
 
-export const hero = {
-  // `*text*` renders in the serif accent face.
-  title: l(
-    'Full-stack developer who ships *AI into real products.*',
-    'Desarrollador full-stack que lleva *la IA a productos reales.*',
+export type OrgId = 'webimpacto' | 'kong' | 'shopify' | 'uoc' | 'camara' | 'cs50ai' | 'anthropic' | 'cambridge';
+
+export type Org = {
+  name: string;
+  /** One or two characters drawn on the logo tile. */
+  mark: string;
+  /** Tile colour; the chip background is a tint of it. */
+  tile: string;
+  /** Mark colour on the tile. */
+  ink?: string;
+  /** In-page anchor the chip links to. */
+  href: string;
+  /** Shown in the hover card. */
+  note: L;
+};
+
+export const orgs: Record<OrgId, Org> = {
+  webimpacto: {
+    name: 'Webimpacto',
+    mark: 'w',
+    tile: '#e11d48',
+    href: '#experience',
+    note: l('Product-focused e-commerce agency · since Oct 2025', 'Agencia e-commerce centrada en producto · desde oct. 2025'),
+  },
+  kong: {
+    name: 'Kong Consulting',
+    mark: 'k',
+    tile: '#e9a400',
+    href: '#experience',
+    note: l('Consultancy in Seville · Apr 2023 – Oct 2025', 'Consultora en Sevilla · abr. 2023 – oct. 2025'),
+  },
+  shopify: {
+    name: 'Shopify',
+    mark: 's',
+    tile: '#5e8e3e',
+    href: '#projects',
+    note: l(
+      'Subscription contracts API, checkout and Liquid themes · 3 Shopify certifications',
+      'API de contratos de suscripción, checkout y temas Liquid · 3 certificaciones de Shopify',
+    ),
+  },
+  uoc: {
+    name: 'UOC',
+    mark: 'u',
+    tile: '#73edff',
+    ink: '#000078',
+    href: '#education',
+    note: l('Universitat Oberta de Catalunya · Computer Engineering, 2025 – present', 'Universitat Oberta de Catalunya · Ingeniería Informática, 2025 – actualidad'),
+  },
+  camara: {
+    name: 'Cámara de Comercio de Sevilla',
+    mark: 'c',
+    tile: '#1d4ed8',
+    href: '#education',
+    note: l('Web Application Development · 2022 – 2023', 'Desarrollo de Aplicaciones Web · 2022 – 2023'),
+  },
+  cs50ai: {
+    name: 'CS50AI',
+    mark: '50',
+    tile: '#a51c30',
+    href: '#ai',
+    note: l(
+      'Harvard’s Introduction to Artificial Intelligence with Python · edX, Oct 2025',
+      'Introduction to Artificial Intelligence with Python de Harvard · edX, oct. 2025',
+    ),
+  },
+  anthropic: {
+    name: 'Anthropic',
+    mark: 'A\\',
+    tile: '#d97757',
+    href: '#ai',
+    note: l('Claude Code in Action certification · Feb 2026', 'Certificación Claude Code in Action · feb. 2026'),
+  },
+  cambridge: {
+    name: 'Cambridge',
+    mark: 'c',
+    tile: '#0f2a5f',
+    href: '#certifications',
+    note: l('C1 Advanced Certificate in English', 'C1 Advanced Certificate in English'),
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/* Intro                                                               */
+/* ------------------------------------------------------------------ */
+
+/** `{orgId}` renders as a logo chip; in plain-text outputs it becomes the org name. */
+export const intro = [
+  l(
+    'I build e-commerce infrastructure where mistakes cost real money. Currently at {webimpacto}, I’m the primary developer on a {shopify} subscription migration involving tens of thousands of active contracts. Before that, I spent two and a half years at {kong}, directing the technical side of our most complex projects.',
+    'Construyo infraestructura e-commerce donde los errores cuestan dinero real. Ahora en {webimpacto} soy el desarrollador principal de una migración de suscripciones en {shopify} con decenas de miles de contratos activos. Antes pasé dos años y medio en {kong}, dirigiendo la parte técnica de los proyectos más complejos.',
   ),
-  lead: l(
-    '3+ years building software people use every day — self-service kiosks running in restaurants, insurance platforms, legally compliant invoicing — and the LLM features on top of them. I lead small teams, talk to clients, and use AI both as a product feature and as my daily engineering tool.',
-    'Más de 3 años construyendo software que se usa a diario — kioscos de autoservicio en restaurantes, plataformas de seguros, facturación conforme a la normativa — y las funcionalidades con LLMs que van encima. Lidero equipos pequeños, trato directamente con clientes y uso la IA como funcionalidad de producto y como herramienta diaria de ingeniería.',
+  l(
+    'I’m finishing Computer Engineering at {uoc}, I’m certified in AI through {cs50ai} and {anthropic}, and lately I’m experimenting heavily with AI-assisted development workflows.',
+    'Estoy terminando Ingeniería Informática en la {uoc}, tengo certificaciones de IA de {cs50ai} y {anthropic}, y últimamente experimento mucho con flujos de desarrollo asistidos por IA.',
   ),
-  facts: [
-    { k: l('Focus', 'Foco'), v: l('Full-stack · LLM integration', 'Full-stack · Integración de LLMs') },
-    { k: l('Experience', 'Experiencia'), v: l('3+ years in production', '3+ años en producción') },
-    { k: l('Leadership', 'Liderazgo'), v: l('Led a team of 4 devs', 'Lideré un equipo de 4 devs') },
-    { k: l('Core stack', 'Stack'), v: l('TypeScript · Angular · Laravel · Node', 'TypeScript · Angular · Laravel · Node') },
-    { k: l('Languages', 'Idiomas'), v: l('Spanish (native) · English (C1)', 'Español (nativo) · Inglés (C1)') },
-    { k: l('Based in', 'Ubicación'), v: l('Seville · Remote or hybrid', 'Sevilla · Remoto o híbrido') },
-  ],
-};
-
-/* ------------------------------------------------------------------ */
-/* Selected work                                                       */
-/* ------------------------------------------------------------------ */
-
-export type FlowNode = { label: string; sub?: L; ai?: boolean };
-
-export type Project = {
-  id: string;
-  kicker: L;
-  title: L;
-  summary: L;
-  highlights: L[];
-  outcome?: L;
-  stack: string[];
-  link?: { href: string; label: string };
-  /** Columns of a left-to-right architecture flow. */
-  flow: FlowNode[][];
-};
-
-export const featured: Project[] = [
-  {
-    id: 'kiosk',
-    kicker: l('Kong Software · 2023–2025 · In production', 'Kong Software · 2023–2025 · En producción'),
-    title: l('Self-service kiosk platform for hospitality', 'Plataforma de kioscos de autoservicio para hostelería'),
-    summary: l(
-      'Unattended ordering software for restaurants, ice-cream shops and pharmacies: customers order and pay on their own, staff focus on delivery. I led the team that built it, from architecture to rollout.',
-      'Software de pedidos desatendido para restaurantes, heladerías y farmacias: el cliente pide y paga solo y el personal se centra en la entrega. Lideré al equipo que lo construyó, desde la arquitectura hasta el despliegue.',
-    ),
-    highlights: [
-      l(
-        'Pioneered AI-powered features: an intelligent order-collection system that automates order intake.',
-        'Impulsé funcionalidades con IA: un sistema inteligente de toma de pedidos que automatiza la entrada de comandas.',
-      ),
-      l(
-        'Integrated card terminals and payment gateways, local and remote printers, and a kitchen display system.',
-        'Integración con datáfonos y pasarelas de pago, impresoras locales y remotas y monitor de cocina.',
-      ),
-      l(
-        'Order-and-pay from a QR code, full per-client customisation and real-time hourly sales reports.',
-        'Pide y paga desde un QR, personalización total por cliente e informes de ventas por hora en tiempo real.',
-      ),
-      l(
-        'Hardened mass-installation script to roll out new kiosks safely and fast.',
-        'Script de instalación masiva con medidas de seguridad para desplegar kioscos nuevos rápido y sin riesgos.',
-      ),
-    ],
-    outcome: l(
-      'Live in production with strong commercial adoption across the hospitality sector.',
-      'En producción y con fuerte adopción comercial en el sector de la hostelería.',
-    ),
-    stack: ['Angular', 'TypeScript', 'Laravel', 'PHP', 'Azure DevOps'],
-    flow: [
-      [
-        { label: 'Kiosk UI', sub: l('Angular', 'Angular') },
-        { label: 'QR order & pay', sub: l('mobile web', 'web móvil') },
-      ],
-      [
-        { label: 'Laravel API', sub: l('orders · catalog · reports', 'pedidos · catálogo · informes') },
-        { label: 'AI order intake', sub: l('intelligent collection', 'toma inteligente'), ai: true },
-      ],
-      [
-        { label: 'Card terminals', sub: l('payment gateways', 'pasarelas de pago') },
-        { label: 'Printers', sub: l('local & remote', 'locales y remotas') },
-        { label: 'Kitchen display', sub: l('live queue', 'cola en vivo') },
-      ],
-    ],
-  },
-  {
-    id: 'danza',
-    kicker: l('Freelance · 2025–present · iOS · Android · Web', 'Freelance · 2025–actualidad · iOS · Android · Web'),
-    title: l('Danza App — reviews & auditions for professional dancers', 'Danza App — reseñas y audiciones para bailarines profesionales'),
-    summary: l(
-      'A cross-platform product where dancers review dance companies and track auditions worldwide. I build it end-to-end, working directly with the product owner: data model, backend, AI layer and app-store release.',
-      'Un producto multiplataforma donde bailarines reseñan compañías de danza y siguen audiciones de todo el mundo. Lo construyo de punta a punta, trabajando directamente con el responsable de producto: modelo de datos, backend, capa de IA y publicación en las stores.',
-    ),
-    highlights: [
-      l(
-        'AI review summaries: a Node backend streams LLM output to the app token by token, with per-user daily quotas to keep costs predictable.',
-        'Resúmenes de reseñas con IA: un backend en Node hace streaming de la respuesta del LLM a la app token a token, con cuotas diarias por usuario para que el coste sea predecible.',
-      ),
-      l(
-        'Supabase / Postgres secured with Row-Level Security and role-based moderation for communities and third-party reviews.',
-        'Supabase / Postgres protegido con Row-Level Security y moderación por roles para comunidades y reseñas de terceros.',
-      ),
-      l(
-        'Audition engine that normalises messy deadlines (“ASAP”, “always open”, several dates) into a clear traffic-light status.',
-        'Motor de audiciones que normaliza plazos caóticos («ASAP», «siempre abierta», varias fechas) en un semáforo de estado claro.',
-      ),
-      l(
-        'From a 15-hour MVP to native iOS & Android builds, plus newsletter and ads.',
-        'De un MVP de 15 horas a apps nativas para iOS y Android, con newsletter y anuncios.',
-      ),
-    ],
-    stack: ['React Native', 'Expo', 'Node.js', 'Supabase', 'PostgreSQL', 'OpenAI API'],
-    link: { href: 'https://danza-app.com', label: 'danza-app.com' },
-    flow: [
-      [{ label: 'Expo app', sub: l('iOS · Android · Web', 'iOS · Android · Web') }],
-      [
-        { label: 'Node API', sub: l('token streaming', 'streaming de tokens') },
-        { label: 'Quota guard', sub: l('daily limit per user', 'límite diario por usuario') },
-      ],
-      [
-        { label: 'LLM', sub: l('review summaries', 'resúmenes de reseñas'), ai: true },
-        { label: 'Supabase', sub: l('Postgres + RLS', 'Postgres + RLS') },
-      ],
-    ],
-  },
+  l(
+    'I care about correctness in systems that touch money, and about leaving codebases better documented than I found them.',
+    'Me importa la corrección en los sistemas que tocan dinero, y dejar el código mejor documentado de lo que lo encontré.',
+  ),
 ];
-
-export const alsoShipped: { title: L; body: L; tags: string[] }[] = [
-  {
-    title: l('Insurance generation platform', 'Plataforma de generación de seguros'),
-    body: l(
-      'Dynamic policy generation with advanced role and hierarchy management that streamlined day-to-day operations.',
-      'Generación dinámica de pólizas con gestión avanzada de roles y jerarquías que agilizó la operativa diaria.',
-    ),
-    tags: ['Laravel', 'PHP'],
-  },
-  {
-    title: l('Spanish e-invoicing compliance', 'Cumplimiento de facturación electrónica'),
-    body: l(
-      'VERIFACTU and non-VERIFACTU e-invoicing, plus Cuaderno 19 SEPA direct-debit remittances — built to the letter of Spanish law.',
-      'Facturación VERIFACTU y no VERIFACTU, y remesas de domiciliación bancaria con Cuaderno 19, alineadas con la legislación española.',
-    ),
-    tags: ['VERIFACTU', 'SEPA', 'Laravel'],
-  },
-  {
-    title: l('Legacy ERP, now on the web', 'ERP legado, ahora en la web'),
-    body: l(
-      'Brought the company’s VB6 desktop ERP to the browser through virtualization — business continuity without a risky rewrite.',
-      'Llevé el ERP de escritorio en VB6 de la empresa al navegador mediante virtualización: continuidad de negocio sin una reescritura arriesgada.',
-    ),
-    tags: ['VB6', 'Virtualization'],
-  },
-  {
-    title: l('CI/CD pipelines', 'Pipelines de CI/CD'),
-    body: l(
-      'Azure DevOps pipelines that cut deployment times and made releases reliable, speeding up the whole delivery cycle.',
-      'Pipelines en Azure DevOps que redujeron los tiempos de despliegue e hicieron las releases fiables, acelerando todo el ciclo de entrega.',
-    ),
-    tags: ['Azure DevOps'],
-  },
-];
-
-/* ------------------------------------------------------------------ */
-/* Building with AI                                                    */
-/* ------------------------------------------------------------------ */
-
-export const aiApproach = {
-  intro: l(
-    'AI shows up twice in my work: as a feature users touch, and as the toolchain I build with. Same rule for both — it has to earn its place.',
-    'La IA aparece dos veces en mi trabajo: como funcionalidad que toca el usuario y como herramienta con la que construyo. La regla es la misma en ambos casos: tiene que ganarse su sitio.',
-  ),
-  principles: [
-    {
-      tag: 'stream · scope · cap',
-      title: l('AI features that feel instant and stay affordable', 'Funcionalidades IA rápidas y con coste controlado'),
-      body: l(
-        'Stream responses so they feel instant, keep keys and prompts server-side, and cap usage per user so the bill never surprises anyone. That is exactly how the review summaries in Danza App work.',
-        'Hacer streaming para que la respuesta se sienta inmediata, mantener claves y prompts en el servidor y limitar el uso por usuario para que la factura no dé sustos. Así funcionan los resúmenes de reseñas de Danza App.',
-      ),
-    },
-    {
-      tag: 'agents write · I own',
-      title: l('Coding agents as teammates', 'Agentes de código como compañeros de equipo'),
-      body: l(
-        'I pair with coding agents like Claude Code for scaffolding, refactors and reviews, and keep what matters for myself: architecture, specs, edge cases and the final review. This site was built that way.',
-        'Trabajo con agentes como Claude Code para scaffolding, refactors y revisiones, y me quedo con lo importante: arquitectura, especificación, casos límite y la revisión final. Esta web se construyó así.',
-      ),
-    },
-    {
-      tag: 'precaution before scale',
-      title: l('Guardrails before rollout', 'Salvaguardas antes de desplegar'),
-      body: l(
-        'A client wanted a new payment provider live for a campaign, with no docs and no load tests. I pushed for a sandbox, log analysis and a limited rollout — and caught a critical payment-confirmation bug before a single real customer hit it.',
-        'Un cliente quería un nuevo proveedor de pagos en producción para una campaña, sin documentación ni pruebas de carga. Propuse entorno controlado, análisis de logs y despliegue limitado, y detectamos un fallo crítico en la confirmación de pagos antes de que lo sufriera un solo cliente real.',
-      ),
-    },
-  ],
-  machineReadable: {
-    title: l('This page is AI-readable', 'Esta web se puede leer con IA'),
-    body: l(
-      'Screening with an AI assistant? Point it at these files — they are generated from the same source as this page.',
-      '¿Filtras candidatos con un asistente de IA? Pásale estos archivos: se generan desde la misma fuente que esta página.',
-    ),
-  },
-};
 
 /* ------------------------------------------------------------------ */
 /* Experience                                                          */
 /* ------------------------------------------------------------------ */
 
 export type Job = {
-  company?: string | L;
+  org: OrgId;
   role: L;
-  period: L;
-  place: L;
+  type: L;
+  start: string;
+  end?: string;
   summary: L;
   points: L[];
+  stack: string[];
+  links?: { label: string; href: string }[];
 };
 
 export const experience: Job[] = [
   {
-    company: 'Danza App',
-    role: l('Freelance Full-stack Developer', 'Desarrollador Full-stack freelance'),
-    period: l('2025 — Present', '2025 — Actualidad'),
-    place: l('Remote', 'Remoto'),
+    org: 'webimpacto',
+    role: l('Mid-Level Full Stack Developer', 'Desarrollador Full Stack Mid-Level'),
+    type: l('Full-time · Remote', 'Jornada completa · En remoto'),
+    start: '2025-10',
     summary: l(
-      'End-to-end owner of a cross-platform app for professional dancers, working directly with the product owner.',
-      'Responsable de punta a punta de una app multiplataforma para bailarines profesionales, trabajando directamente con el responsable de producto.',
+      'Product-focused e-commerce agency, working on high-traffic Shopify storefronts and subscription infrastructure.',
+      'Agencia e-commerce centrada en producto, trabajando en tiendas Shopify de alto tráfico e infraestructura de suscripciones.',
     ),
     points: [
-      l('LLM-powered review summaries with streaming and per-user quotas.', 'Resúmenes de reseñas con LLM, streaming y cuotas por usuario.'),
-      l('Data model, Row-Level Security, roles and moderation on Supabase.', 'Modelo de datos, Row-Level Security, roles y moderación en Supabase.'),
-      l('iOS & Android release with Expo, newsletter and ads.', 'Publicación en iOS y Android con Expo, newsletter y anuncios.'),
+      l(
+        'Primary developer on a subscription migration with tens of thousands of active contracts, and the team’s main technical reference for the subscription domain.',
+        'Desarrollador principal de una migración de suscripciones con decenas de miles de contratos activos y referente técnico del equipo en el dominio de suscripciones.',
+      ),
+      l(
+        'Built the customer subscription portal and the backend for subscription management over WhatsApp.',
+        'Construí el portal de suscripciones para clientes y el backend de la gestión de suscripciones por WhatsApp.',
+      ),
+      l(
+        'Day-to-day development on live storefronts: theme customisation and integrations with external services.',
+        'Desarrollo diario en tiendas en producción: personalización de temas e integraciones con servicios externos.',
+      ),
+    ],
+    stack: ['Shopify', 'Liquid', 'Remix', 'Laravel', 'GraphQL', 'Node.js'],
+    links: [
+      { label: 'incapto', href: 'https://incapto.com/' },
+      { label: 'talkual', href: 'https://www.talkualfoods.com/' },
     ],
   },
   {
-    company: 'Kong Software',
-    role: l('Full-stack Developer', 'Desarrollador Full-stack'),
-    period: l('Mar 2023 — Oct 2025', 'Mar 2023 — Oct 2025'),
-    place: l('Seville, Spain', 'Sevilla, España'),
+    org: 'kong',
+    role: l('Full-stack developer', 'Desarrollador full-stack'),
+    type: l('Full-time · Seville', 'Jornada completa · Sevilla'),
+    start: '2023-07',
+    end: '2025-10',
     summary: l(
-      'Joined as an intern and grew into leading a team of four developers and owning client communication on production projects for insurance, retail and hospitality.',
-      'Entré en prácticas y acabé liderando un equipo de cuatro desarrolladores y la comunicación con clientes en proyectos en producción de seguros, retail y hostelería.',
+      'Joined as a full-stack developer and quickly became the technical lead for the team’s most complex projects.',
+      'Entré como desarrollador full-stack y pronto pasé a ser el líder técnico de los proyectos más complejos del equipo.',
     ),
     points: [
-      l('Led the self-service kiosk platform (Angular + Laravel), now in production.', 'Lideré la plataforma de kioscos de autoservicio (Angular + Laravel), hoy en producción.'),
-      l('Pioneered AI-powered features such as intelligent order collection.', 'Impulsé funcionalidades con IA como la toma inteligente de pedidos.'),
-      l('Built an insurance generation platform with role & hierarchy management.', 'Construí una plataforma de generación de seguros con gestión de roles y jerarquías.'),
-      l('Shipped VERIFACTU e-invoicing and Cuaderno 19 direct debits.', 'Implementé facturación VERIFACTU y domiciliaciones con Cuaderno 19.'),
-      l('Set up Azure DevOps CI/CD and brought a VB6 ERP to the web.', 'Monté CI/CD en Azure DevOps y llevé un ERP en VB6 a la web.'),
+      l(
+        'Architectural decisions and day-to-day technical direction of three developers, owning delivery across frontend, backend and infrastructure.',
+        'Decisiones de arquitectura y dirección técnica diaria de tres desarrolladores, responsable de la entrega en frontend, backend e infraestructura.',
+      ),
+      l(
+        'Led an insurance platform for 10,000+ users and a multi-tenant self-service kiosk with payment and printing hardware.',
+        'Lideré una plataforma de seguros para más de 10.000 usuarios y un kiosco de autoservicio multi-tenant con hardware de pago e impresión.',
+      ),
+      l(
+        'Containerised CI/CD with Docker and GitHub Actions that cut deployment times by 70%.',
+        'CI/CD en contenedores con Docker y GitHub Actions que redujo los tiempos de despliegue un 70%.',
+      ),
     ],
+    stack: ['Angular', 'Laravel', 'SQL Server', 'MySQL', 'Docker', 'GitHub Actions', 'Azure DevOps'],
   },
   {
-    role: l('Peer Programming Mentor', 'Mentor de programación entre iguales'),
-    period: l('Sep 2022 — Feb 2023', 'Sep 2022 — Feb 2023'),
-    place: l('Seville, Spain', 'Sevilla, España'),
+    org: 'kong',
+    role: l('Full-stack developer · internship', 'Desarrollador full-stack · prácticas'),
+    type: l('Internship · Hybrid', 'Contrato de prácticas · Híbrido'),
+    start: '2023-04',
+    end: '2023-06',
     summary: l(
-      'One-on-one mentoring for fellow students on core programming concepts and problem-solving.',
-      'Mentorías individuales a compañeros sobre fundamentos de programación y resolución de problemas.',
+      'Internship at the same consultancy before joining full-time.',
+      'Prácticas en la misma consultora antes de incorporarme a jornada completa.',
     ),
     points: [],
+    stack: ['PHP', 'TypeScript'],
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Toolbox & education                                                 */
+/* AI                                                                  */
 /* ------------------------------------------------------------------ */
 
-export const toolbox: { group: L; items: string[] }[] = [
-  {
-    group: l('AI', 'IA'),
-    items: ['OpenAI API', 'LLM streaming', 'Prompt design', 'Python', 'Claude Code'],
-  },
-  {
-    group: l('Frontend', 'Frontend'),
-    items: ['TypeScript', 'Angular', 'React Native', 'Expo', 'Astro', 'HTML & CSS'],
-  },
-  {
-    group: l('Backend & data', 'Backend y datos'),
-    items: ['PHP', 'Laravel', 'Node.js', 'Supabase', 'PostgreSQL', 'REST APIs'],
-  },
-  {
-    group: l('Delivery', 'Entrega'),
-    items: ['Azure DevOps', 'CI/CD', 'Git', 'POS & payment hardware', 'VERIFACTU'],
-  },
-];
-
-export const education: { school: string; title: L; period: string | L; note?: L }[] = [
-  {
-    school: 'Universitat Oberta de Catalunya (UOC)',
-    title: l('Bachelor’s in Computer Engineering', 'Grado en Ingeniería Informática'),
-    period: l('2025 — Present', '2025 — Actualidad'),
-    note: l('In progress, alongside full-time work', 'En curso, compaginado con trabajo a jornada completa'),
-  },
-  {
-    school: 'HarvardX',
-    title: l('CS50’s Introduction to Artificial Intelligence with Python', 'CS50’s Introduction to Artificial Intelligence with Python'),
-    period: '2025',
-    note: l('Search, knowledge, uncertainty, optimization, ML, neural networks, NLP', 'Búsqueda, conocimiento, incertidumbre, optimización, ML, redes neuronales, NLP'),
-  },
-  {
-    school: 'Cámara de Comercio de Sevilla',
-    title: l('Higher Vocational Diploma in Web Application Development', 'CFGS Desarrollo de Aplicaciones Web'),
-    period: '2021 — 2023',
-  },
-];
-
-/* ------------------------------------------------------------------ */
-/* About & contact                                                     */
-/* ------------------------------------------------------------------ */
-
-export const about = {
-  paragraphs: [
-    l(
-      'I started out in Telecommunications Engineering and realised the part I loved was the code — so I switched to web development and never looked back.',
-      'Empecé en Ingeniería de Telecomunicación y me di cuenta de que lo que de verdad me gustaba era programar, así que me pasé al desarrollo web y no he mirado atrás.',
-    ),
-    l(
-      'I joined Kong Software as an intern and stayed two and a half years, growing into leading a team of four and talking directly with clients. Today I build AI-powered products and study Computer Engineering at UOC in parallel — the tools change every month, the fundamentals don’t.',
-      'Entré en Kong Software en prácticas y me quedé dos años y medio, hasta liderar un equipo de cuatro y tratar directamente con clientes. Hoy construyo productos con IA y estudio Ingeniería Informática en la UOC en paralelo: las herramientas cambian cada mes, los fundamentos no.',
-    ),
-    l(
-      'I care about communication as much as code. Clients, teammates and managers all need to understand why something takes longer, or why it should be built differently — that is part of the job, not a distraction from it.',
-      'Me importa la comunicación tanto como el código. Clientes, compañeros y responsables necesitan entender por qué algo tarda más o por qué conviene hacerlo de otra forma: eso es parte del trabajo, no una distracción.',
-    ),
-  ],
+export type Item = {
+  title: L;
+  sub: L;
+  body: L;
+  meta?: L;
+  links?: { label: string; href: string }[];
 };
 
-export const contact = {
-  title: l('Let’s build something that *ships.*', 'Construyamos algo que *llegue a producción.*'),
-  body: l(
-    'I’m open to full-stack and AI engineering roles — remote, hybrid or in Seville. Email is the fastest way to reach me.',
-    'Estoy abierto a roles full-stack y de ingeniería de IA, en remoto, híbrido o en Sevilla. El email es la forma más rápida de contactar conmigo.',
-  ),
-};
+export const ai: Item[] = [
+  {
+    title: l('CS50AI', 'CS50AI'),
+    sub: l('Harvard · edX', 'Harvard · edX'),
+    body: l(
+      'Introduction to Artificial Intelligence with Python — search, logic, machine learning, neural networks and natural language processing. Completed with a 100% score, to understand what happens under the hood of the AI tools I build with.',
+      'Introduction to Artificial Intelligence with Python: búsqueda, lógica, machine learning, redes neuronales y procesamiento del lenguaje natural. Completado con un 100% de nota, para entender qué pasa por debajo de las herramientas de IA con las que construyo.',
+    ),
+    meta: l('Oct 2025', 'oct. 2025'),
+  },
+  {
+    title: l('Claude Code in Action', 'Claude Code in Action'),
+    sub: l('Anthropic', 'Anthropic'),
+    body: l(
+      'Anthropic certification on Claude Code, its agentic coding tool. This site was built with it.',
+      'Certificación de Anthropic sobre Claude Code, su herramienta de programación agéntica. Esta web está hecha con ella.',
+    ),
+    meta: l('Feb 2026', 'feb. 2026'),
+  },
+  {
+    title: l('AI-assisted development', 'Desarrollo asistido por IA'),
+    sub: l('side projects', 'proyectos personales'),
+    body: l(
+      'Outside work I build side projects, lately experimenting heavily with AI-assisted development workflows.',
+      'Fuera del trabajo construyo proyectos personales, últimamente experimentando mucho con flujos de desarrollo asistidos por IA.',
+    ),
+    meta: l('now', 'ahora'),
+  },
+  {
+    title: l('Community', 'Comunidad'),
+    sub: l('Fullstack Sevilla · CTX Tech', 'Fullstack Sevilla · CTX Tech'),
+    body: l(
+      'Attending Seville tech meetups on AI applied to software development and on where AI is heading.',
+      'Asistiendo a meetups tecnológicos de Sevilla sobre IA aplicada al desarrollo de software y hacia dónde va la IA.',
+    ),
+    meta: l('2025 – 2026', '2025 – 2026'),
+  },
+  {
+    title: l('AI-readable profile', 'Perfil legible por IA'),
+    sub: l('this site', 'esta web'),
+    body: l(
+      'Screening with an AI assistant? Point it at these files — they are generated from the same source as this page.',
+      '¿Filtras candidatos con un asistente de IA? Pásale estos archivos: se generan desde la misma fuente que esta página.',
+    ),
+    links: [
+      { label: 'llms.txt', href: 'llms.txt' },
+      { label: 'resume.json', href: 'resume.json' },
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Projects (from the LinkedIn experience descriptions)                */
+/* ------------------------------------------------------------------ */
+
+export type Project = Item & { org: OrgId; start: string; end?: string };
+
+export const projects: Project[] = [
+  {
+    org: 'webimpacto',
+    title: l('WhatsApp × Shopify', 'WhatsApp × Shopify'),
+    sub: l('conversational subscriptions', 'suscripciones conversacionales'),
+    body: l(
+      'Backend for managing subscriptions on WhatsApp, integrating Shopify with the client’s messaging provider. Subscribers reschedule orders, add one-time or recurring products and trigger immediate delivery; non-subscribers check order status and reorder their last purchase, with delivery reminders and a feedback flow.',
+      'Backend para gestionar suscripciones por WhatsApp, integrando Shopify con el proveedor de mensajería del cliente. Los suscriptores reprograman pedidos, añaden productos puntuales o recurrentes y piden una entrega inmediata; quien no está suscrito consulta el estado de su pedido y repite su última compra, con recordatorios de entrega y un flujo de feedback.',
+    ),
+    start: '2025-10',
+  },
+  {
+    org: 'webimpacto',
+    title: l('Subscription migration', 'Migración de suscripciones'),
+    sub: l('tens of thousands of contracts', 'decenas de miles de contratos'),
+    body: l(
+      'Full migration of active subscription contracts: billing cycle management, payment continuity and webhook-driven edge cases on Shopify’s subscription contracts API, plus GraphQL.',
+      'Migración completa de contratos de suscripción activos: gestión de ciclos de facturación, continuidad de pagos y casos límite gestionados con webhooks sobre la API de contratos de suscripción de Shopify y GraphQL.',
+    ),
+    start: '2025-10',
+  },
+  {
+    org: 'webimpacto',
+    title: l('Subscription portal', 'Portal de suscripciones'),
+    sub: l('customer-facing', 'para clientes'),
+    body: l(
+      'Post-purchase interface where subscribers skip, delay, advance or modify their subscriptions, add products and manage status — built for reliability, given the financial sensitivity of subscription operations.',
+      'Interfaz post-compra donde los suscriptores saltan, retrasan, adelantan o modifican sus suscripciones, añaden productos y gestionan su estado, construida con foco en la fiabilidad por la sensibilidad financiera de las operaciones.',
+    ),
+    start: '2025-10',
+  },
+  {
+    org: 'kong',
+    title: l('Self-service kiosk', 'Kiosco de autoservicio'),
+    sub: l('multi-tenant · hardware', 'multi-tenant · hardware'),
+    body: l(
+      'Touch-screen ordering app for restaurants: card reader for in-person payments (Redsys), USB and network ticket printers and a cash drawer. Per-merchant menus from a central ERP, QR order-and-pay, hourly real-time reports and a kitchen display. CI/CD on Azure and scripts for mass rollout.',
+      'App de pedidos en pantalla táctil para restauración: datáfono para pagos presenciales (Redsys), impresoras de tickets USB y de red y cajón portamonedas. Cartas por comercio desde un ERP central, pide y paga con QR, informes en tiempo real por hora y monitor de cocina. CI/CD en Azure y scripts de instalación masiva.',
+    ),
+    start: '2023-07',
+    end: '2025-10',
+  },
+  {
+    org: 'kong',
+    title: l('Insurance platform', 'Plataforma de seguros'),
+    sub: l('10,000+ users', '+10.000 usuarios'),
+    body: l(
+      'Web application for policy data, user permissions and operations workflows. Rigorous database design and access control with Laravel Sanctum and custom policies, structured for future microservices and SSO.',
+      'Aplicación web para datos de pólizas, permisos de usuario y flujos operativos. Diseño de base de datos riguroso y control de acceso con Laravel Sanctum y policies propias, preparada para microservicios y SSO.',
+    ),
+    start: '2023-07',
+    end: '2025-10',
+  },
+  {
+    org: 'kong',
+    title: l('ERP dashboards', 'Dashboards de ERP'),
+    sub: l('construction sector', 'sector construcción'),
+    body: l(
+      'Executive dashboards on a construction-sector ERP surfacing real-time operational metrics, reducing manual reporting.',
+      'Dashboards ejecutivos sobre un ERP del sector de la construcción con métricas operativas en tiempo real, reduciendo los informes manuales.',
+    ),
+    start: '2023-07',
+    end: '2025-10',
+  },
+  {
+    org: 'kong',
+    title: l('CI/CD pipeline', 'Pipeline de CI/CD'),
+    sub: l('−70% deployment time', '−70% en despliegues'),
+    body: l(
+      'Containerised pipeline with Docker and GitHub Actions, enforcing automated testing and code quality gates.',
+      'Pipeline en contenedores con Docker y GitHub Actions, con tests automáticos y controles de calidad de código obligatorios.',
+    ),
+    start: '2023-07',
+    end: '2025-10',
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Skills, education, certifications, languages                        */
+/* ------------------------------------------------------------------ */
+
+export const skills: { group: L; items: string[] }[] = [
+  { group: l('languages', 'lenguajes'), items: ['TypeScript', 'PHP', 'Python', 'GraphQL', 'Liquid', 'CSS'] },
+  { group: l('frameworks', 'frameworks'), items: ['Angular', 'RxJS', 'Laravel', 'Remix', 'Node.js'] },
+  {
+    group: l('e-commerce', 'e-commerce'),
+    items: ['Shopify subscription contracts API', 'Shopify checkout', 'webhooks', 'Redsys'],
+  },
+  {
+    group: l('data & infra', 'datos e infra'),
+    items: ['SQL Server', 'MySQL', 'Docker', 'GitHub Actions', 'Azure DevOps', 'Git'],
+  },
+  {
+    group: l('ai', 'ia'),
+    items: ['Python', 'CS50AI: search, ML, neural networks, NLP', 'Claude Code', 'AI-assisted development'],
+  },
+  {
+    group: l('soft skills', 'transversales'),
+    items: ['leadership', 'problem solving', 'analytical skills', 'client-facing', 'project design', 'professional responsibility'],
+  },
+];
+
+export const languages: { name: L; level: L }[] = [
+  {
+    name: l('English', 'Inglés'),
+    level: l('Full professional proficiency · C1 Advanced', 'Competencia profesional completa · C1 Advanced'),
+  },
+];
+
+export const education: { school: string; org: OrgId; degree: L; start: string; end?: string }[] = [
+  {
+    school: 'Universitat Oberta de Catalunya',
+    org: 'uoc',
+    degree: l('Bachelor’s in Computer Engineering', 'Grado en Ingeniería Informática'),
+    start: '2025-01',
+  },
+  {
+    school: 'Centro FP Superior de la Cámara de Comercio de Sevilla',
+    org: 'camara',
+    degree: l('Web Application Development', 'Desarrollo de Aplicaciones Web'),
+    start: '2022',
+    end: '2023-07',
+  },
+];
+
+export const certifications: { name: string; issuer: string; org: OrgId; date?: string }[] = [
+  { name: 'Claude Code in Action', issuer: 'Anthropic', org: 'anthropic', date: '2026-02' },
+  { name: 'CS50AI: Introduction to Artificial Intelligence with Python', issuer: 'edX', org: 'cs50ai', date: '2025-10' },
+  { name: 'Creating Solutions for Shopify Checkout', issuer: 'Shopify', org: 'shopify', date: '2025-10' },
+  { name: 'Liquid Storefronts for Theme Developers', issuer: 'Shopify', org: 'shopify', date: '2025-10' },
+  { name: 'Shopify Development Fundamentals: Verified Skill Badge', issuer: 'Shopify', org: 'shopify', date: '2025-10' },
+  { name: 'C1 Advanced Certificate in English', issuer: 'Cambridge University Press & Assessment', org: 'cambridge' },
+];
 
 /* ------------------------------------------------------------------ */
 /* UI strings                                                          */
@@ -383,45 +440,23 @@ export const contact = {
 
 export const ui = {
   meta: {
-    title: l('Pedro Martínez — Full-stack & AI Developer', 'Pedro Martínez — Desarrollador Full-stack & IA'),
+    title: l('Pedro Martínez — Full-Stack Developer', 'Pedro Martínez — Desarrollador Full-Stack'),
     description: l(
-      'Full-stack developer in Seville shipping AI features to production. Angular, Laravel, Node, Supabase and LLM integration. 3+ years, team lead experience.',
-      'Desarrollador full-stack en Sevilla que lleva funcionalidades de IA a producción. Angular, Laravel, Node, Supabase e integración de LLMs. 3+ años y experiencia liderando equipos.',
+      'Mid-level full-stack developer in Seville building Shopify subscription and payment infrastructure with Laravel, Angular, Node.js and GraphQL. CS50AI and Claude Code certified.',
+      'Desarrollador full-stack mid-level en Sevilla: infraestructura de suscripciones y pagos en Shopify con Laravel, Angular, Node.js y GraphQL. Certificado en CS50AI y Claude Code.',
     ),
   },
   nav: {
-    work: l('Work', 'Proyectos'),
-    ai: l('AI', 'IA'),
-    experience: l('Experience', 'Experiencia'),
-    about: l('About', 'Sobre mí'),
-    contact: l('Contact', 'Contacto'),
+    experience: l('experience', 'experiencia'),
+    ai: l('ai', 'ia'),
+    projects: l('projects', 'proyectos'),
+    skills: l('skills', 'aptitudes'),
+    education: l('education', 'formación'),
+    certifications: l('certifications', 'certificaciones'),
   },
-  sections: {
-    work: l('Selected work', 'Proyectos destacados'),
-    also: l('Also shipped', 'También en producción'),
-    ai: l('Building with AI — and building AI', 'Construir con IA — y construir IA'),
-    experience: l('Experience', 'Experiencia'),
-    toolbox: l('Toolbox', 'Herramientas'),
-    education: l('Education', 'Formación'),
-    about: l('About', 'Sobre mí'),
-    contact: l('Contact', 'Contacto'),
-  },
-  hero: {
-    ctaWork: l('See my work', 'Ver proyectos'),
-    ctaEmail: l('Email me', 'Escríbeme'),
-    streaming: l('streaming', 'generando'),
-    done: l('done', 'listo'),
-    tldr: l('TL;DR for recruiters', 'TL;DR para recruiters'),
-  },
-  project: {
-    highlights: l('What I built', 'Qué construí'),
-    architecture: l('How it works', 'Cómo funciona'),
-    outcome: l('Outcome', 'Resultado'),
-    visit: l('Visit', 'Visitar'),
-  },
-  contact: {
-    copy: l('Copy email', 'Copiar email'),
-    copied: l('Copied', 'Copiado'),
+  labels: {
+    now: l('now', 'actualidad'),
+    spoken: l('spoken', 'idiomas'),
   },
   footer: {
     built: l('Built with Astro and Claude Code.', 'Hecho con Astro y Claude Code.'),
@@ -429,9 +464,10 @@ export const ui = {
   },
   a11y: {
     skip: l('Skip to content', 'Saltar al contenido'),
-    theme: l('Toggle color theme', 'Cambiar tema de color'),
-    lang: l('Leer en español', 'Read in English'),
-    langShort: l('ES', 'EN'),
+    primary: l('Sections', 'Secciones'),
+    dark: l('dark mode', 'modo oscuro'),
+    light: l('light mode', 'modo claro'),
+    lang: l('español', 'english'),
   },
 };
 
@@ -467,7 +503,7 @@ export function resolve<T>(value: T, locale: Locale): Resolve<T> {
 
 export function getContent(locale: Locale) {
   return resolve(
-    { profile, hero, featured, alsoShipped, aiApproach, experience, toolbox, education, about, contact, ui },
+    { profile, orgs, intro, experience, ai, projects, skills, languages, education, certifications, ui },
     locale,
   );
 }

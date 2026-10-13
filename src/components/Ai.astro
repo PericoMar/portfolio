@@ -1,0 +1,19 @@
+---
+import Row from './Row.astro';
+import Section from './Section.astro';
+import type { Content } from '../data/content';
+
+interface Props {
+  c: Content;
+}
+
+const { c } = Astro.props;
+---
+
+<Section id="ai" title={c.ui.nav.ai}>
+  {c.ai.map((item) => (
+    <Row title={item.title} sub={item.sub} meta={item.meta} links={item.links}>
+      <p>{item.body}</p>
+    </Row>
+  ))}
+</Section>

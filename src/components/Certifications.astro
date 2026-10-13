@@ -1,0 +1,23 @@
+---
+import Section from './Section.astro';
+import type { Content, Locale } from '../data/content';
+import { formatMonth } from '../lib/format';
+
+interface Props {
+  c: Content;
+  locale: Locale;
+}
+
+const { c, locale } = Astro.props;
+---
+
+<Section id="certifications" title={c.ui.nav.certifications}>
+  <ul class="rows">
+    {c.certifications.map((cert) => (
+      <li class="row row--record">
+        <span>{cert.name}, {cert.issuer}</span>
+        <span class="row-meta">{cert.date && formatMonth(cert.date, locale)}</span>
+      </li>
+    ))}
+  </ul>
+</Section>

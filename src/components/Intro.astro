@@ -1,0 +1,19 @@
+---
+import Chip from './Chip.astro';
+import type { Content, OrgId } from '../data/content';
+import { chipTokens } from '../lib/format';
+
+interface Props {
+  c: Content;
+}
+
+const { c } = Astro.props;
+---
+
+<section class="intro" id="top">
+  {c.intro.map((paragraph) => (
+    <p>
+      {chipTokens(paragraph).map((t) => ('org' in t ? <Chip c={c} id={t.org as OrgId} /> : t.text))}
+    </p>
+  ))}
+</section>
