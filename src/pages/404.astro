@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { getContent } from '../data/content';
+import { url } from '../lib/paths';
+
+// Vercel serves this one page for every missing path, so it speaks both languages.
+const en = getContent('en');
+const es = getContent('es');
+---
+
+<Base locale="en" title={en.ui.notFound.title} description={en.ui.meta.description} noindex>
+  <div class="arcs" aria-hidden="true"></div>
+
+  <main class="not-found">
+    <p class="name"><a href={url('')}>{en.profile.shortName}</a></p>
+    <p class="who">{en.profile.headline}</p>
+
+    <h1 class="not-found-code">404</h1>
+    <p class="not-found-text">{en.ui.notFound.text}</p>
+    <p class="not-found-text" lang="es">{es.ui.notFound.text}</p>
+
+    <ul class="not-found-links">
+      <li><a href={url('')}>← {en.ui.notFound.back}</a></li>
+      <li><a href={url('es/')} hreflang="es" lang="es">← {es.ui.notFound.back}</a></li>
+    </ul>
+  </main>
+</Base>

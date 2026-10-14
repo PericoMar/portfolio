@@ -546,6 +546,14 @@ export const ui = {
     built: l('Built with Astro and Claude Code.', 'Hecho con Astro y Claude Code.'),
     updated: l('Last updated', 'Actualizado'),
   },
+  notFound: {
+    title: l('Page not found — Pedro Martínez', 'Página no encontrada — Pedro Martínez'),
+    text: l(
+      'This page doesn’t exist. The link may be old or mistyped.',
+      'Esta página no existe. Puede que el enlace sea antiguo o tenga una errata.',
+    ),
+    back: l('Back to the portfolio', 'Volver al portfolio'),
+  },
   a11y: {
     skip: l('Skip to content', 'Saltar al contenido'),
     primary: l('Sections', 'Secciones'),

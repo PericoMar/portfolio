@@ -9,9 +9,11 @@ interface Props {
   locale: Locale;
   title: string;
   description: string;
+  /** For pages that should stay out of search results (the 404): no canonical, no alternates. */
+  noindex?: boolean;
 }
 
-const { locale, title, description } = Astro.props;
+const { locale, title, description, noindex = false } = Astro.props;
 const site = Astro.site!;
 const canonical = new URL(url(locale === 'en' ? '' : `${locale}/`), site).href;
 const alternates = {
@@ -53,10 +55,16 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={profile.name} />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href={alternates.en} />
-    <link rel="alternate" hreflang="es" href={alternates.es} />
-    <link rel="alternate" hreflang="x-default" href={alternates.en} />
+    {noindex ? (
+      <meta name="robots" content="noindex" />
+    ) : (
+      <>
+        <link rel="canonical" href={canonical} />
+        <link rel="alternate" hreflang="en" href={alternates.en} />
+        <link rel="alternate" hreflang="es" href={alternates.es} />
+        <link rel="alternate" hreflang="x-default" href={alternates.en} />
+      </>
+    )}
     <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
     <link rel="sitemap" href={url('sitemap-index.xml')} />
     <link rel="alternate" type="text/plain" title="llms.txt" href={url('llms.txt')} />
