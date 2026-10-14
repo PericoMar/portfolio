@@ -1,27 +1,37 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getContent } from '../data/content';
+import { getContent, locales } from '../data/content';
 import { url } from '../lib/paths';
 
-// Vercel serves this one page for every missing path, so it speaks both languages.
-const en = getContent('en');
-const es = getContent('es');
+// Vercel serves this one page for every missing path, so it carries both languages and shows one:
+// Spanish under /es/ or for Spanish-speaking browsers, English otherwise (and without JS).
+const content = { en: getContent('en'), es: getContent('es') };
+const home = { en: url(''), es: url('es/') };
 ---
 
-<Base locale="en" title={en.ui.notFound.title} description={en.ui.meta.description} noindex>
+<Base locale="en" title={content.en.ui.notFound.title} description={content.en.ui.meta.description} noindex>
   <div class="arcs" aria-hidden="true"></div>
 
   <main class="not-found">
-    <p class="name"><a href={url('')}>{en.profile.shortName}</a></p>
-    <p class="who">{en.profile.headline}</p>
+    {locales.map((locale) => (
+      <div lang={locale} data-not-found={locale} hidden={locale !== 'en'}>
+        <p class="name"><a href={home[locale]}>{content[locale].profile.shortName}</a></p>
+        <p class="who">{content[locale].profile.headline}</p>
 
-    <h1 class="not-found-code">404</h1>
-    <p class="not-found-text">{en.ui.notFound.text}</p>
-    <p class="not-found-text" lang="es">{es.ui.notFound.text}</p>
-
-    <ul class="not-found-links">
-      <li><a href={url('')}>← {en.ui.notFound.back}</a></li>
-      <li><a href={url('es/')} hreflang="es" lang="es">← {es.ui.notFound.back}</a></li>
-    </ul>
+        <h1 class="not-found-code">404</h1>
+        <p class="not-found-text">{content[locale].ui.notFound.text}</p>
+        <p class="not-found-back"><a href={home[locale]}>← {content[locale].ui.notFound.back}</a></p>
+      </div>
+    ))}
   </main>
+
+  <!-- Runs right after the markup above, before the first paint, so English never flashes. -->
+  <script is:inline define:vars={{ esHome: home.es, esTitle: content.es.ui.notFound.title }}>
+    if (location.pathname.startsWith(esHome) || /^es\b/i.test(navigator.language)) {
+      document.querySelector('[data-not-found="en"]').hidden = true;
+      document.querySelector('[data-not-found="es"]').hidden = false;
+      document.documentElement.lang = 'es';
+      document.title = esTitle;
+    }
+  </script>
 </Base>

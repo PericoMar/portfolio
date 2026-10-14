@@ -617,24 +617,16 @@ button {
   color: var(--text-2);
 }
 
-.not-found-text + .not-found-text {
-  margin-top: 4px;
-  color: var(--muted);
-}
-
-.not-found-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 28px;
+.not-found-back {
   margin-top: 32px;
 }
 
-.not-found-links a {
+.not-found-back a {
   color: var(--accent);
   font-weight: 500;
 }
 
-.not-found-links a:hover {
+.not-found-back a:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
