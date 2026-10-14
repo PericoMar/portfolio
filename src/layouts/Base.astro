@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { locale, title, description } = Astro.props;
-const site = Astro.site ?? new URL('https://pericomar.github.io');
+const site = Astro.site!;
 const canonical = new URL(url(locale === 'en' ? '' : `${locale}/`), site).href;
 const alternates = {
   en: new URL(url(''), site).href,

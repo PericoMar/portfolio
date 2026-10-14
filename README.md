@@ -1,7 +1,7 @@
 # Pedro Martínez — Portfolio
 
 Personal portfolio for development recruiters, with an emphasis on AI.
-Live at **https://pericomar.github.io/portfolio/** (English) and **/es/** (Spanish).
+Live at **https://pedro-martinez-portfolio.vercel.app/** (English) and **/es/** (Spanish).
 
 Minimal layout inspired by [nitya.ca](https://www.nitya.ca/): fixed sidebar, everything in lowercase,
 logo chips in the intro and table-like rows for each section.
@@ -10,7 +10,7 @@ logo chips in the intro and table-like rows for each section.
 
 - [Astro](https://astro.build) — static output, zero client framework, a few lines of vanilla TS.
 - Self-hosted Geist font — no third-party requests.
-- GitHub Actions → GitHub Pages on every push to `main`.
+- Hosted on [Vercel](https://vercel.com) (project `pedro-martinez-portfolio`).
 
 ## Editing content
 
@@ -35,7 +35,7 @@ The content mirrors the [LinkedIn profile](https://www.linkedin.com/in/pedromarg
 
 ```bash
 npm install
-npm run dev       # http://localhost:4321/portfolio/
+npm run dev       # http://localhost:4321/
 npm run build     # type-check + static build into dist/
 npm run preview
 ```
@@ -44,7 +44,9 @@ Requires Node ≥ 22.12.
 
 ## Deploy
 
-1. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions** (one-time).
-2. Push to `main`. The workflow in `.github/workflows/deploy.yml` builds and publishes.
+```bash
+vercel deploy --prod
+```
 
-Moving to a custom domain: set `site` to the domain and `base` to `'/'` in `astro.config.mjs`.
+`site` in `astro.config.mjs` comes from Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, so once a custom domain
+is added to the project, the next deploy switches canonical URLs, the sitemap and the OG image to it.
