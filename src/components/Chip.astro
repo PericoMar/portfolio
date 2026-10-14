@@ -10,9 +10,13 @@ interface Props {
 const { c, id } = Astro.props;
 const org = c.orgs[id];
 const noteId = `chip-note-${id}`;
+
+/* Pseudo-random logo tilt (±3–7°) seeded by the org id, so it stays the same across builds. */
+const hash = [...id].reduce((h, ch) => (Math.imul(h, 31) + ch.charCodeAt(0)) >>> 0, 7);
+const tilt = (hash % 2 ? 1 : -1) * (3 + ((hash >>> 1) % 5));
 ---
 
-<a class="chip" href={org.href} style={`--tile: ${org.tile}`} aria-describedby={noteId}>
+<a class="chip" href={org.href} style={`--tile: ${org.tile}; --tilt: ${tilt}deg`} aria-describedby={noteId}>
   <Logo org={org} />
   <span>{org.name}</span>
   <span class="chip-card" id={noteId} aria-hidden="true">
