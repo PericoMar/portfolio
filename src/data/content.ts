@@ -25,7 +25,7 @@ const l = (en: string, es: string): L => ({ en, es });
 export const profile = {
   name: 'Pedro Martínez González',
   shortName: 'Pedro Martínez',
-  headline: l('Mid-Level Full-Stack Developer', 'Desarrollador Full-Stack Mid-Level'),
+  headline: l('Full-Stack Developer', 'Desarrollador Full-Stack'),
   location: l('Tomares, Seville, Spain', 'Tomares, Sevilla, España'),
   email: 'pedromartinezgon0511@gmail.com',
   linkedin: 'https://www.linkedin.com/in/pedromargonz/',
@@ -165,8 +165,8 @@ export const intro = [
     'Construyo infraestructura e-commerce donde los errores cuestan dinero real. En {webimpacto} trabajo con tiendas {shopify} de suscripción con decenas de miles de contratos activos: me aseguro de que los cobros recurrentes aguanten ese volumen, los adapto a las necesidades de cada cliente y diseño sistemas que sigan siendo mantenibles a medida que crecen. He participado en dos migraciones completas de suscripciones. Antes pasé dos años y medio en {kong}, dirigiendo la parte técnica de los proyectos más complejos.',
   ),
   l(
-    'On the side I build {danza}, a cross-platform app for professional dancers with LLM-powered review summaries, and I’m experimenting heavily with AI-assisted development workflows. I’m finishing Computer Engineering at {uoc} and I’m certified in AI through {cs50ai} and {anthropic}.',
-    'Por mi cuenta construyo {danza}, una app multiplataforma para bailarines profesionales con resúmenes de reseñas generados por LLM, y experimento mucho con flujos de desarrollo asistidos por IA. Estoy terminando Ingeniería Informática en la {uoc} y tengo certificaciones de IA de {cs50ai} y {anthropic}.',
+    'On the side I build {danza}, a cross-platform app for professional dancers with 400+ users and LLM-powered review summaries, and I’m experimenting heavily with AI-assisted development workflows. I’m finishing Computer Engineering at {uoc} and I’m certified in AI through {cs50ai} and {anthropic}.',
+    'Por mi cuenta construyo {danza}, una app multiplataforma para bailarines profesionales con más de 400 usuarios y resúmenes de reseñas generados por LLM, y experimento mucho con flujos de desarrollo asistidos por IA. Estoy terminando Ingeniería Informática en la {uoc} y tengo certificaciones de IA de {cs50ai} y {anthropic}.',
   ),
   l(
     'I care about correctness in systems that touch money, and about leaving codebases better documented than I found them.',
@@ -355,10 +355,10 @@ export const projects: Project[] = [
   {
     org: 'danza',
     title: l('Danza App', 'Danza App'),
-    sub: l('freelance · iOS · Android · web', 'freelance · iOS · Android · web'),
+    sub: l('freelance · 400+ users · iOS · Android · web', 'freelance · +400 usuarios · iOS · Android · web'),
     body: l(
-      'Cross-platform app where professional dancers review dance companies and track auditions worldwide. Built end-to-end with the product owner: data model, backend, AI layer and app-store release. Supabase / Postgres secured with Row-Level Security and role-based moderation; an audition engine that turns messy deadlines (“ASAP”, “always open”, several dates) into a clear traffic-light status. From a 15-hour MVP to native iOS and Android builds, plus newsletter and ads.',
-      'App multiplataforma donde bailarines profesionales reseñan compañías de danza y siguen audiciones de todo el mundo. Construida de punta a punta con el responsable de producto: modelo de datos, backend, capa de IA y publicación en las stores. Supabase / Postgres protegido con Row-Level Security y moderación por roles; un motor de audiciones que convierte plazos caóticos («ASAP», «siempre abierta», varias fechas) en un semáforo de estado claro. De un MVP de 15 horas a apps nativas para iOS y Android, con newsletter y anuncios.',
+      'Cross-platform app where professional dancers review dance companies and track auditions worldwide. Built end-to-end with the product owner: data model, backend, AI layer and app-store release. Supabase / Postgres secured with Row-Level Security and role-based moderation; an audition engine that turns messy deadlines (“ASAP”, “always open”, several dates) into a clear traffic-light status. From a 15-hour MVP to native iOS and Android builds with ads and a newsletter. It now lists 400+ ballet companies, has 250+ newsletter subscribers and gains 70+ new users every month.',
+      'App multiplataforma donde bailarines profesionales reseñan compañías de danza y siguen audiciones de todo el mundo. Construida de punta a punta con el responsable de producto: modelo de datos, backend, capa de IA y publicación en las stores. Supabase / Postgres protegido con Row-Level Security y moderación por roles; un motor de audiciones que convierte plazos caóticos («ASAP», «siempre abierta», varias fechas) en un semáforo de estado claro. De un MVP de 15 horas a apps nativas para iOS y Android, con anuncios y newsletter. Hoy reúne más de 400 compañías de ballet y más de 250 suscriptores a la newsletter, y suma más de 70 usuarios nuevos cada mes.',
     ),
     start: '2025',
     stack: ['React Native', 'Expo', 'Node.js', 'Supabase', 'PostgreSQL', 'OpenAI API'],
@@ -526,8 +526,8 @@ export const ui = {
   meta: {
     title: l('Pedro Martínez — Full-Stack Developer', 'Pedro Martínez — Desarrollador Full-Stack'),
     description: l(
-      'Mid-level full-stack developer in Seville building Shopify subscription and payment infrastructure with Laravel, Angular, Node.js and GraphQL, plus LLM-powered features in Danza App. CS50AI and Claude Code certified.',
-      'Desarrollador full-stack mid-level en Sevilla: infraestructura de suscripciones y pagos en Shopify con Laravel, Angular, Node.js y GraphQL, y funcionalidades con LLM en Danza App. Certificado en CS50AI y Claude Code.',
+      'Full-stack developer in Seville building Shopify subscription and payment infrastructure with Laravel, Angular, Node.js and GraphQL, plus LLM-powered features in Danza App. CS50AI and Claude Code certified.',
+      'Desarrollador full-stack en Sevilla: infraestructura de suscripciones y pagos en Shopify con Laravel, Angular, Node.js y GraphQL, y funcionalidades con LLM en Danza App. Certificado en CS50AI y Claude Code.',
     ),
   },
   nav: {
